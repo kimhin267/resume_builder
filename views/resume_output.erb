@@ -1,0 +1,90 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Resume</title>
+		<link rel="stylesheet" type="text/css" href="/style.css" />
+
+		
+	</head>
+
+	<body>
+		<ul id="nav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="webpage.html">Webpage</a></li>
+				<li><a href="resume.html">Resume</a></li>
+		</ul>
+		<div id="topheader">
+			<span id="name"><%= @resume['first_name'] + ' ' + @resume['last_name'] %></span> <span id="email"><%= @resume['email_address'] %></span>	
+	 	</div>
+	 	<div id="botborders"></div>
+	 	<h1><%= @resume['home_address'] + ' | ' + @resume['city'] + ' | ' + @resume['state'] + ' | ' + @resume['zip_code'] + ' | ' + @resume['telephone_number'] %></h1>
+			
+		<div class="resume_row">
+			<div class="experience">
+				<h1>Education</h1>
+			</div>
+
+			<div class="job">
+				<h1>TEMPLE UNIVERSITY, Fox School of Business, Philadelphia, PA</h1>
+				<h3><i>Bachelor of Business Administration, Graduation: August 2013</i></h3>
+				<h3><b>Major:</b> Management Information Systems</h3>
+				<h3><b>GPA:</b> 3.62</h3>
+		 	</div>
+		</div>
+
+		<div class="resume_row">
+			<div class="experience">
+				<h1>Experience</h1>
+			</div>
+			<div class="job">
+				<h1>Happy Dragon Foods</h1>
+				<h2>Computer Technician</h2>
+				<ul>
+					<li>Provide desktop support in areas such as hardware and software support and troubleshooting, hardware upgrades, software upgrades, and local network connectivity</li>
+					<li>Basic computer mainte
+
+# If you're using bundler, you will need to add this
+require 'bundler/setup'
+
+require 'sinatra'
+
+get '/' do
+  "Hello world, it's #{Time.now} at the server!"
+endnance and troubleshooting.</li>
+					<li>Perform tape backups & data restore</li>
+					<li>Coordinate warranty repairs with vendors</li>
+					<li>Inventory management</li>
+		 		</ul>
+		 	</div>
+			<div class="date">
+				<p >November 2009 - June 2012</p>
+			</div>
+		</div>
+			
+		<div class="resume_row">
+			<div class="experience">
+				<h1>Skills</h1>
+			</div>
+			<div class="job">
+				<h1></h1>
+				<ul>
+					<li>Microsoft Suite</li>
+					<li>JavaScript</li>
+					<li>HTML</li>
+					<li>CompTIA A+ Certified</li>
+				</ul>
+				<div id="compTIA_logo">
+					<img src="/images/smallA.jpg">
+				</div>
+			</div>
+		</div>	
+	</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Resume Builder</title>
+		<link rel="stylesheet" type="text/css" href="/style2.css">
+		<script type="text/javascript" src="script.js"></script>
+	</head>
+
+	<body>
+		<form name="resume_builder" action="/create_resume" method="post">
+			<div id="first_name" class="input_div">
+				<div class="label_div">
+					<label>First Name: </label>
+				</div>
+				<input type="text" name="resume[first_name]" />
+			</div>
+			<div id="last_name"  class="input_div">
+				<div class="label_div">
+					<label>Last Name: </label>
+				</div>
+				<input type="text" name="resume[last_name]" />
+			</div>
+			<div id="email_address"  class="input_div">
+				<div class="label_div">
+					<label>Email Address: </label>
+				</div>
+				<input type="text" name="resume[email_address]" />
+			</div>
+			<div id="home_address"  class="input_div">
+				<div class="label_div">
+					<label>Home Address: </label>
+				</div>
+				<input type="text" name="resume[home_address]">
+			</div>	
+			<div id="city"  class="input_div">
+				<div class="label_div">
+					<label>City: </label>
+				</div>
+				<input type="text" name="resume[city]">
+			</div>	
+			<div id="state"  class="input_div">
+				<div class="label_div">
+					<label>State: </label>
+				</div>
+				<input type="text" name="resume[state]">
+			</div>	
+			<div id="zip_code"  class="input_div">
+				<div class="label_div">
+					<label>Zip Code: </label>
+				</div>
+				<input type="text" name="resume[zip_code]">
+			</div>	
+			<div id="telephone_number"  class="input_div">
+				<div class="label_div">
+					<label>Telephone Number: </label>
+				</div>
+				<input type="text" name="resume[telephone_number]">
+			</div>
+			<div>
+				<input type="submit" value="Submit">
+			</div>			
+		</form>
+	</body>
+</html>
