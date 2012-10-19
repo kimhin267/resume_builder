@@ -1,67 +1,171 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Resume Builder</title>
-		<link rel="stylesheet" type="text/css" href="/style2.css">
+		<title>Resume Form</title>
+		<link rel="stylesheet" type="text/css" href="/style.css">
 		<script type="text/javascript" src="script.js"></script>
 	</head>
 
-	<body>
-		<form name="resume_builder" action="/create_resume" method="post">
-			<div id="first_name" class="input_div">
-				<div class="label_div">
-					<label>First Name: </label>
+	<body id="resume_form_body">
+		<ul id="nav">
+			<li><a href="/">Home</a></li>
+			<li><a href="/webpage">Webpage</a></li>
+			<li><a href="/resume_builder">Resume Builder</a></li>
+			<li><a href="/resume">Resume</a></li>
+		</ul>
+		<div id="resume_form_area">
+			<form name="resume_builder" action="/create_resume" method="post">
+				<div id="first_name" class="input_div">
+					<div class="label_div">
+						<label>First Name: </label>
+					</div>
+					<input type="text" name="resume[first_name]" />
 				</div>
-				<input type="text" name="resume[first_name]" />
-			</div>
-			<div id="last_name"  class="input_div">
-				<div class="label_div">
-					<label>Last Name: </label>
+
+				<div id="last_name"  class="input_div">
+					<div class="label_div">
+						<label>Last Name: </label>
+					</div>
+					<input type="text" name="resume[last_name]" />
 				</div>
-				<input type="text" name="resume[last_name]" />
-			</div>
-			<div id="email_address"  class="input_div">
-				<div class="label_div">
-					<label>Email Address: </label>
+
+				<div id="email_address"  class="input_div">
+					<div class="label_div">
+						<label>Email Address: </label>
+					</div>
+					<input type="text" name="resume[email_address]" />
 				</div>
-				<input type="text" name="resume[email_address]" />
-			</div>
-			<div id="home_address"  class="input_div">
-				<div class="label_div">
-					<label>Home Address: </label>
+
+				<div id="home_address"  class="input_div">
+					<div class="label_div">
+						<label>Home Address: </label>
+					</div>
+					<input type="text" name="resume[home_address]">
+				</div>	
+
+				<div id="city"  class="input_div">
+					<div class="label_div">
+						<label>City: </label>
+					</div>
+					<input type="text" name="resume[city]">
+				</div>	
+
+				<div id="state"  class="input_div">
+					<div class="label_div">
+						<label>State: </label>
+					</div>
+					<input type="text" name="resume[state]">
+				</div>	
+
+				<div id="zip_code"  class="input_div">
+					<div class="label_div">
+						<label>Zip Code: </label>
+					</div>
+					<input type="text" name="resume[zip_code]">
 				</div>
-				<input type="text" name="resume[home_address]">
-			</div>	
-			<div id="city"  class="input_div">
-				<div class="label_div">
-					<label>City: </label>
+
+				<div id="telephone_number"  class="input_div">
+					<div class="label_div">
+						<label>Telephone Number: </label>
+					</div>
+					<input type="text" name="resume[telephone_number]">
 				</div>
-				<input type="text" name="resume[city]">
-			</div>	
-			<div id="state"  class="input_div">
-				<div class="label_div">
-					<label>State: </label>
+
+				<div class="input_div">
+					<div class="label_div">
+						<label>School: </label>
+					</div>
+					<input type="text" name="resume[school]">
 				</div>
-				<input type="text" name="resume[state]">
-			</div>	
-			<div id="zip_code"  class="input_div">
-				<div class="label_div">
-					<label>Zip Code: </label>
+
+				<div class="input_div">
+					<div class="label_div">
+						<label>City: </label>
+					</div>
+					<input type="text" name="resume[school_city]">
 				</div>
-				<input type="text" name="resume[zip_code]">
-			</div>	
-			<div id="telephone_number"  class="input_div">
-				<div class="label_div">
-					<label>Telephone Number: </label>
+
+				<div class="input_div">
+					<div class="label_div">
+						<label>State: </label>
+					</div>
+					<input type="text" name="resume[school_state]">
+				</div>	
+
+				<div class="input_div">
+					<div class="label_div">
+						<label>Degree: </label>
+					</div>
+					<input type="text" name="resume[degree]">
 				</div>
-				<input type="text" name="resume[telephone_number]">
-			</div>
-			<div>
-				<input type="submit" value="Submit">
-			</div>
-			<div>
-				<label></label>
-			</div>			
-		</form>
+
+				<div class="input_div">
+					<div class="label_div">
+						<label>Graduation Date: </label>
+					</div>
+					<input type="text" name="resume[graduation_date]">
+				</div>	
+
+				<div class="input_div">
+					<div class="label_div">
+						<label>Major: </label>
+					</div>
+					<input type="text" name="resume[major]">
+				</div>
+
+				<div class="input_div">
+					<div class="label_div">
+						<label>GPA: </label>
+					</div>
+					<input type="text" name="resume[gpa]">
+				</div>
+
+				<div class="input_div">
+					<div class="label_div">
+						<label>Company's Name: </label>
+					</div>
+					<input type="text" name="resume[company_name]">
+				</div>	
+
+				<div class="input_div">
+					<div class="label_div">
+						<label>Position: </label>
+					</div>
+					<input type="text" name="resume[position]">
+				</div>	
+
+				<div class="input_div">
+					<div class="label_div">
+						<label>Start date (month/year): </label>
+					</div>
+					<input type="text" name="resume[job_start]">
+				</div>
+
+				<div class="input_div">
+					<div class="label_div">
+						<label>End date (month/year): </label>
+					</div>
+					<input type="text" name="resume[job_end]">
+				</div>	
+
+				<div class="input_div">
+					<div class="label_div">
+						<label>Job skills: </label>
+					</div>
+					<input type="text" name="resume[job_skills]">
+				</div>	
+
+				<div class="input_div">
+					<div class="label_div">
+						<label>skills: </label>
+					</div>
+					<input type="text" name="resume[skills]">
+				</div>	
+
+				<div>
+					<input type="submit" value="Submit">
+				</div>							
+			</form>
+		</div>
 	</body>
 </html>

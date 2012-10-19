@@ -26,10 +26,10 @@
 			</div>
 
 			<div class="job">
-				<h1>TEMPLE UNIVERSITY, Fox School of Business, Philadelphia, PA</h1>
-				<h3><i>Bachelor of Business Administration, Graduation: August 2013</i></h3>
-				<h3><b>Major:</b> Management Information Systems</h3>
-				<h3><b>GPA:</b> 3.62</h3>
+				<h1><%= @resume['school'] + ', ' + @resume['school_city'] + ', ' + @resume['school_state'] %></h1>
+				<h3><i><%= @resume['degree'] + ', Graduaiom date: ' + @resume['graduation_date'] %></i></h3>
+				<h3><b>Major:</b><%= @resume['major'] %></h3>
+				<h3><b>GPA:</b><%= @resume['gpa'] %></h3>
 		 	</div>
 		</div>
 
@@ -38,27 +38,14 @@
 				<h1>Experience</h1>
 			</div>
 			<div class="job">
-				<h1>Happy Dragon Foods</h1>
-				<h2>Computer Technician</h2>
+				<h1><%= @resume['company_name'] %></h1>
+				<h2><%= @resume['position'] %></h2>
 				<ul>
-					<li>Provide desktop support in areas such as hardware and software support and troubleshooting, hardware upgrades, software upgrades, and local network connectivity</li>
-					<li>Basic computer mainte
-
-# If you're using bundler, you will need to add this
-require 'bundler/setup'
-
-require 'sinatra'
-
-get '/' do
-  "Hello world, it's #{Time.now} at the server!"
-endnance and troubleshooting.</li>
-					<li>Perform tape backups & data restore</li>
-					<li>Coordinate warranty repairs with vendors</li>
-					<li>Inventory management</li>
+					<li><%= @resume['job_skills'] %></li>
 		 		</ul>
 		 	</div>
 			<div class="date">
-				<p >November 2009 - June 2012</p>
+				<p><%= @resume['job_start'] + ' - ' + @resume['job_end'] %></p>
 			</div>
 		</div>
 			
@@ -69,14 +56,9 @@ endnance and troubleshooting.</li>
 			<div class="job">
 				<h1></h1>
 				<ul>
-					<li>Microsoft Suite</li>
-					<li>JavaScript</li>
-					<li>HTML</li>
-					<li>CompTIA A+ Certified</li>
+					<li><%= @resume['skills']
+					%></li>
 				</ul>
-				<div id="compTIA_logo">
-					<img src="/images/smallA.jpg">
-				</div>
 			</div>
 		</div>	
 	</body>
