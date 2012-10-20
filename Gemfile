@@ -8,6 +8,3 @@ gem 'dm-migrations'
 gem 'dm-validations'
 gem 'dm-timestamps'
 
-group :production do
-  gem 'pg'
-end
