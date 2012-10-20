@@ -8,7 +8,6 @@ group :production do
   gem 'pg'
 end
 
-group :development do
-  gem 'taps'
-  gem 'rvm'
+group :development, :test do
+  gem 'sqlite3'
 end
