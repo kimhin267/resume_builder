@@ -78,7 +78,7 @@ class resume_builder < Sinatra::Application
 		return erb :resume.to_sym	
 	end
 
-	get '/webpage' do
+	get '//protected_page' do
 		return erb :webpage.admin_only_page
 	end
 	# this will be the form
