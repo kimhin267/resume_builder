@@ -2,22 +2,37 @@
 <html>
 	<head>
 		<title>Sign in page</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 
 	<body>
-		<form>
+		<ul class="nav">
+			<li><a href="/">Home</a></li>
+			<li><a href="/webpage">Webpage</a></li>
+			<li><a href="/resume_builder">Resume Builder</a></li>
+			<li><a href="/resume">Resume</a></li>
+		</ul>
+		
+		<div id='sign_in_error'>
+			<%= params[:login_error] %>
+			<div><br></div>
+		</div>
+		
+		<form action="/sign_in" method="post">
 			<div>
-				<label>Username: </label>
+				<label>Email: </label>
 			</div>
 			<div>
-				<input type="text" name="username" />
+				<input type="text" name="login[email_address]" />
 			</div>
 			<div>
 				<label>Password: </label>
 			</div>
 			<div>
-				<input type="text" name="password" />
+				<input type="password" name="login[password]" /s>
 			</div>
+			<input type="submit" value="Login"/>
 		</form>	
+		
 	</body>
 </html>

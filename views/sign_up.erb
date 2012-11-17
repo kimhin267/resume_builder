@@ -2,22 +2,40 @@
 <html>
 	<head>
 		<title>Sign up page</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 
 	<body>
-		<form>
+		<ul class="nav">
+			<li><a href="/">Home</a></li>
+			<li><a href="/webpage">Webpage</a></li>
+			<li><a href="/resume_builder">Resume Builder</a></li>
+			<li><a href="/resume">Resume</a></li>
+		</ul>
+
+		<form action="/sign_up" method="post">
+			<div id='sign_up_error'>
+				<%= params[:signup_error] %>
+				<%= params[:empty_signup_field] %>
+				<div><br></div>
+
+			</div>	
 			<div>
-				<label>Username: </label>
+				<label>Email: </label>
 			</div>
 			<div>
-				<input type="text" name="username" />
+				<!--<input type="text" name="user[email_address]" /> -->
+				<input type="text" name="sign_up[email_address]" />
 			</div>
 			<div>
 				<label>Password: </label>
 			</div>
 			<div>
-				<input type="text" name="password" />
+				<!--<input type="password" name="user[password]" /> -->
+				<input type="password" name="sign_up[password]" /> 
 			</div>
+			<input type="submit" value="submit" />
 		</form>	
+
 	</body>
 </html>

@@ -12,11 +12,14 @@ body{
 #resume_form_body{
 	background: lightblue;
 }
+#my_resumes_body{
+	background: lightblue;
+}
 #resume_form_area{
 	margin-top: 45px;
 	font-size: 1.3em;
 }
-#nav {
+ul.nav {
 	background: #19252E;
 	background-repeat: repeat-x;
 	position: fixed;
@@ -24,32 +27,26 @@ body{
 	width: 100%;
 	height: 35px;
 	z-index: 999;
-	margin-left: -9px;
+	margin-left: -30px;
 	padding-top: 4px;
 	text-align: center;
 	display: inline-block;
 }
-#nav li{
+ul.nav li{
 	display:inline-block;
-	border-style: inset;
-	border-width: 6px;
-	border-color: red;
 	padding-left: 5px;
 	padding-right: 5px;
 	margin-left: 1px;
 	margin-right:1px;
-	margin-top: -3px;
 }
 
-a{
+ul.nav li a{
 	display:inline-block;
 	text-decoration:none;
 	padding:5px;
 	color: white;
 }
-ul {
-	margin-top: -7px;
-}
+
 #botborders {
 	border-bottom: 1px solid black;
 	width: 1031px;
@@ -61,8 +58,31 @@ ul {
 	margin-bottom: 15px;
 	width: 1031px;
 }
-
-
+#webpage_under_construction{
+	font-size: 4em;
+	font-weight: bold;
+	margin-top: 260px;
+	text-align: center;
+}
+#index_h1{
+	margin-top: 45px;
+	font-size: 3em;
+	font-weight: bold;
+}
+#sign_up_error{
+	margin-top: 50px;
+	color: red;
+}
+#sign_in_error{
+	margin-top: 50px;
+	color: red;
+}
+.links {
+	font-size: 1.5em;
+	font-weight: bold;
+	color: red;
+	text-decoration: none;
+}
 /* do it this way */
 
 h1 {
@@ -103,6 +123,9 @@ div.experience {
 	float: left;
 	min-height: 87px;
 }
+div.resume ul li{
+	text-decoration: none;
+}
 span#name{
 	font-weight: bold;
 }
@@ -117,22 +140,23 @@ div#right_side_panel{
 	margin-left: 1032px;
 	margin-top: -362px;
 }
-li:hover{
+ul.subcategories{
+	margin-top: 0px;
+	margin-bottom: 1px;
+}
+a{
+	text-decoration: none;
+	color: blue;
+	font-weight: bold;
+}
+ul {
+	margin-top: -7px;
+}
+.nav li:hover{
 	font-size: 1.5em;
 	background: #19252E;
 }
 a:active{
 	color: blue;
-}
-#webpage_under_construction{
-	font-size: 4em;
-	font-weight: bold;
-	margin-top: 260px;
-	text-align: center;
-}
-#index_h1{
-	margin-top: 45px;
-	font-size: 3em;
-	font-weight: bold;
 }
 ;

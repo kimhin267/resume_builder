@@ -6,14 +6,40 @@
 	</head>
 
 	<body id="index_body">
-		<ul id="nav">
+		
+		<ul class="nav">
 			<li><a href="/">Home</a></li>
 			<li><a href="/webpage">Webpage</a></li>
 			<li><a href="/resume_builder">Resume Builder</a></li>
 			<li><a href="/resume">Resume</a></li>
 		</ul>
+		
 		<div id="index_h1">
-			<h1>Welcome!</h1>
+			<h1>Welcome <%= session['user'] %></h1>
+		</div>
+		<div>
+			<span class='links'>
+				<%= params['need_login'] %>
+				<a href="/sign_in">Sign in</a> 
+			<!--<% if session.has_key?('user') %>
+			<% else %>
+				Please<a href="/sign_in"> Sign in</a>
+			<% end %>-->
+			</span>
+		</div>
+		<div class='links'>
+			<span>
+				<% if session.has_key?('user') %>
+					<a href="/logout">Logout</a>
+				<% end %>
+			</span>
+		</div>
+		<div class='links'>
+			<a href="/sign_up">Sign up</a>
+		</div>
+		
+		<div class='links'>
+			<a href="/my_resumes">My Resumes</a>
 		</div>
 	</body>
 </html>

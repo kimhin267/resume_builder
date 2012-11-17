@@ -1,0 +1,61 @@
+stm = db.prepare "INSERT INTO Resume(First_name, Last_name, Email, Home_address, City, State, 
+				Zip_code, Telephone_number, School, School_city, School_state, Degree, Graduation_date, 
+				Major, GPA, Company_name, Position, Job_skills, Job_start, Job_end, Skills) VALUES (
+				first_name, 
+				last_name, 
+				email_address, 
+				home_address, 
+				city, 
+				state, 
+				zip_code, 
+				telephone_number, 
+				school, 
+				school_city, 
+				school_state, 
+				degree, 
+				graduation_date, 
+				major, 
+				gpa, 
+				company_name, 
+				position, 
+				job_skills, 
+				job_start, 
+				Job_end, 
+				skills
+				)
+
+@resume['first_name'], 
+				@resume['last_name'], 
+				@resume['email_address'], 
+				@resume['home_address'], 
+				@resume['city'], 
+				@reusme['state'], 
+				@resume['zip_code'], 
+				@resume['telephone_number'], 
+				@resume['school'], 
+				@resume['school_city'], 
+				@resume['school_state'], 
+				@resume['degree'], 
+				@resume['graduation_date'], 
+				@resume['major'], 
+				@resume['gpa'], 
+				@reusme['company_name'], 
+				@resume['position'], 
+				@resume['job_skills'], 
+				@resume['job_start'], 
+				@resume['job_end'], 
+				@resume['skills']"
+
+
+first_name, last_name, email_address, home_address, city, state, zip_code, telephone_number, 
+				school, school_city, school_state, degree, graduation_date, major, gpa, company_name, 
+				position, job_skills, job_start, job_end, skills
+
+
+First_name, Last_name, Email, Home_address, City, State, 
+				Zip_code, Telephone_number, School, School_city, School_state, Degree, Graduation_date, 
+				Major, GPA, Company_name, Position, Job_skills, Job_start, Job_end, Skills
+
+first_name, last_name, email_address, home_address, city, state, zip_code, telephone_number, 
+				school, school_city, school_state, degree, graduation_date, major, gpa, company_name, 
+				position, job_skills, job_start, job_end, skills

@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -17,10 +16,10 @@
 		</ul>
 		
 		<div id="topheader">
-			<span id="name"><%= @resume['first_name'] + ' ' + @resume['last_name'] %></span> <span id="email"><%= @resume['email_address'] %></span>	
+			<span id="name"><%= @resume[3] + ' ' + @resume[4] %></span> <span id="email"><%= @resume[5] %></span>	
 	 	</div>
 	 	<div id="botborders"></div>
-	 	<h1><%= @resume['home_address'] + ' | ' + @resume['city'] + ' | ' + @resume['state'] + ' | ' + @resume['zip_code'] + ' | ' + @resume['telephone_number'] %></h1>
+	 	<h1><%= @resume[6] + ' | ' + @resume[7] + ' | ' + @resume[8] + ' | ' + @resume[9] + ' | ' + @resume[10] %></h1>
 			
 		<div class="resume_row">
 			<div class="experience">
@@ -28,10 +27,10 @@
 			</div>
 
 			<div class="job">
-				<h1><%= @resume['school'] + ', ' + @resume['school_city'] + ', ' + @resume['school_state'] %></h1>
-				<h3><i><%= @resume['degree'] + ', Graduation date: ' + @resume['graduation_date'] %></i></h3>
-				<h3><b>Major:</b><%= @resume['major'] %></h3>
-				<h3><b>GPA:</b><%= @resume['gpa'] %></h3>
+				<h1><%= @resume[11] + ', ' + @resume[12] + ', ' + @resume[13] %></h1>
+				<h3><i><%= @resume[14] + ', Graduation date: ' + @resume[15] %></i></h3>
+				<h3><b>Major:</b><%= @resume[16] %></h3>
+				<h3><b>GPA:</b><%= @resume[17] %></h3>
 		 	</div>
 		</div>
 
@@ -40,14 +39,14 @@
 				<h1>Experience</h1>
 			</div>
 			<div class="job">
-				<h1><%= @resume['company_name'] %></h1>
-				<h2><%= @resume['position'] %></h2>
+				<h1><%= @resume[18] %></h1>
+				<h2><%= @resume[19] %></h2>
 				<ul>
-					<li><%= @resume['job_skills'] %></li>
+					<li><%= @resume[20] %></li>
 		 		</ul>
 		 	</div>
 			<div class="date">
-				<p><%= @resume['job_start'] + ' - ' + @resume['job_end'] %></p>
+				<p><%= @resume[21] + ' - ' + @resume[22] %></p>
 			</div>
 		</div>
 			
@@ -58,16 +57,9 @@
 			<div class="job">
 				<h1></h1>
 				<ul>
-					<li><%= @resume['skills']%></li>
+					<li><%= @resume[23]%></li>
 				</ul>
 			</div>
 		</div>
 	</body>
 </html>
-
-
-
-
-
-
-

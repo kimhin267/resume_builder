@@ -7,14 +7,31 @@
 	</head>
 
 	<body id="resume_form_body">
-		<ul id="nav">
+		<ul class="nav">
 			<li><a href="/">Home</a></li>
 			<li><a href="/webpage">Webpage</a></li>
 			<li><a href="/resume_builder">Resume Builder</a></li>
 			<li><a href="/resume">Resume</a></li>
 		</ul>
+		
+		<!--<div>
+			<h2><%= params['need_login'] %></h2>
+		</div> -->
+
+		
 		<div id="resume_form_area">
+			<!--<span id='not_login'>
+				<%= params['need_login']%>
+				<%= @need_login %><a href="/sign_in"> Sign in</a>
+				<div><br></div>
+			 </span>-->
 			<form name="resume_builder" action="/create_resume" method="post">
+				<div class='input_div'>
+					<div>
+						<label>Title: </label>
+					</div>
+					<input type='text' name='resume[title]'>
+				</div>
 				<div id="first_name" class="input_div">
 					<div class="label_div">
 						<label>First Name: </label>
@@ -136,6 +153,7 @@
 
 				<div class="input_div">
 					<div class="label_div">
+						<!-- make into drop box -->
 						<label>Start date (month/year): </label>
 					</div>
 					<input type="text" name="resume[job_start]">
@@ -143,6 +161,7 @@
 
 				<div class="input_div">
 					<div class="label_div">
+						<!-- make into drop box -->
 						<label>End date (month/year): </label>
 					</div>
 					<input type="text" name="resume[job_end]">
@@ -160,11 +179,8 @@
 						<label>skills: </label>
 					</div>
 					<input type="text" name="resume[skills]">
-				</div>	
-
-				<div>
-					<input type="submit" value="Submit">
-				</div>							
+				</div>
+				<input type="submit" value="Submit">							
 			</form>
 		</div>
 	</body>

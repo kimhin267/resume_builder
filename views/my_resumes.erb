@@ -1,0 +1,32 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+
+	<body id="my_resumes_body">
+		<ul class="nav">
+			<li><a href="/">Home</a></li>
+			<li><a href="/webpage">Webpage</a></li>
+			<li><a href="/resume_builder">Resume Builder</a></li>
+			<li><a href="/resume">Resume</a></li>
+		</ul>
+		
+		<div class='resume'>
+			<ul>
+				<% @resumes.each do |resume| %>
+					<li><%= resume[1] %>
+						<a href="/resumes/<%= resume[0] %>">View Resume</a>
+						<!-- <a href="/edit">Edit |</a> -->
+						<!-- <a href="/resumes/delete/<% resume[0] %>">Delete</a> -->
+						<form action='/resumes/<%= resume[0] %>' method="post">
+							<input name="_method" type='hidden' value='delete'>
+							<input type='submit' value='Delete'>
+						</form>
+					</li>	
+				<%end%>
+			</ul>
+		</div>
+	</body>
+</html>
