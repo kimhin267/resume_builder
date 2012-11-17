@@ -8,7 +8,3 @@ gem 'dm-migrations'
 gem 'dm-validations'
 gem 'dm-timestamps'
 
-group :development do
-  gem 'taps'
-  gem 'rvm'
-end
