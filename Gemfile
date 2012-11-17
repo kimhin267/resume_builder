@@ -8,9 +8,6 @@ gem 'dm-migrations'
 gem 'dm-validations'
 gem 'dm-timestamps'
 
-group :production do
-  gem 'pg'
-end
 group :development, :test do
   gem 'sqlite3'
 end
