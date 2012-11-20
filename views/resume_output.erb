@@ -1,73 +1,46 @@
+<div id="topheader">
+	<span id="name"><%= @resume['first_name'] + ' ' + @resume['last_name'] %></span> <span id="email"><%= @resume['email_address'] %></span>	
+	</div>
+	<div id="botborders"></div>
+	<h1><%= @resume['home_address'] + ' | ' + @resume['city'] + ' | ' + @resume['state'] + ' | ' + @resume['zip_code'] + ' | ' + @resume['telephone_number'] %></h1>
+	
+<div class="resume_row">
+	<div class="experience">
+		<h1>Education</h1>
+	</div>
 
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Resume</title>
-		<link rel="stylesheet" type="text/css" href="/style.css" />
+	<div class="job">
+		<h1><%= @resume['school'] + ', ' + @resume['school_city'] + ', ' + @resume['school_state'] %></h1>
+		<h3><i><%= @resume['degree'] + ', Graduation date: ' + @resume['graduation_date'] %></i></h3>
+		<h3><b>Major:</b><%= @resume['major'] %></h3>
+		<h3><b>GPA:</b><%= @resume['gpa'] %></h3>
+ 	</div>
+</div>
 
-		
-	</head>
-
-	<body>
-		<ul id="nav">
-			<li><a href="/">Home</a></li>
-			<li><a href="/webpage">Webpage</a></li>
-			<li><a href="/resume_builder">Resume Builder</a></li>
-			<li><a href="/resume">Resume</a></li>
+<div class="resume_row">
+	<div class="experience">
+		<h1>Experience</h1>
+	</div>
+	<div class="job">
+		<h1><%= @resume['company_name'] %></h1>
+		<h2><%= @resume['position'] %></h2>
+		<ul>
+			<li><%= @resume['job_skills'] %></li>
+ 		</ul>
+ 	</div>
+	<div class="date">
+		<p><%= @resume['job_start'] + ' - ' + @resume['job_end'] %></p>
+	</div>
+</div>
+	
+<div class="resume_row">
+	<div class="experience">
+		<h1>Skills</h1>
+	</div>
+	<div class="job">
+		<h1></h1>
+		<ul>
+			<li><%= @resume['skills']%></li>
 		</ul>
-		
-		<div id="topheader">
-			<span id="name"><%= @resume['first_name'] + ' ' + @resume['last_name'] %></span> <span id="email"><%= @resume['email_address'] %></span>	
-	 	</div>
-	 	<div id="botborders"></div>
-	 	<h1><%= @resume['home_address'] + ' | ' + @resume['city'] + ' | ' + @resume['state'] + ' | ' + @resume['zip_code'] + ' | ' + @resume['telephone_number'] %></h1>
-			
-		<div class="resume_row">
-			<div class="experience">
-				<h1>Education</h1>
-			</div>
-
-			<div class="job">
-				<h1><%= @resume['school'] + ', ' + @resume['school_city'] + ', ' + @resume['school_state'] %></h1>
-				<h3><i><%= @resume['degree'] + ', Graduation date: ' + @resume['graduation_date'] %></i></h3>
-				<h3><b>Major:</b><%= @resume['major'] %></h3>
-				<h3><b>GPA:</b><%= @resume['gpa'] %></h3>
-		 	</div>
-		</div>
-
-		<div class="resume_row">
-			<div class="experience">
-				<h1>Experience</h1>
-			</div>
-			<div class="job">
-				<h1><%= @resume['company_name'] %></h1>
-				<h2><%= @resume['position'] %></h2>
-				<ul>
-					<li><%= @resume['job_skills'] %></li>
-		 		</ul>
-		 	</div>
-			<div class="date">
-				<p><%= @resume['job_start'] + ' - ' + @resume['job_end'] %></p>
-			</div>
-		</div>
-			
-		<div class="resume_row">
-			<div class="experience">
-				<h1>Skills</h1>
-			</div>
-			<div class="job">
-				<h1></h1>
-				<ul>
-					<li><%= @resume['skills']%></li>
-				</ul>
-			</div>
-		</div>
-	</body>
-</html>
-
-
-
-
-
-
-
+	</div>
+</div>

@@ -1,0 +1,9 @@
+<div>
+	<% if session.has_key?('user') %>
+	<h1><%= 'Hello, Welcome ' %><%= session['user'] %><%= '!' %></h1>
+	<% else %>
+	<h1><%= 'Hello, Welcome to Breezy Resume!' %></h1>
+	<%end%>
+</div>
+
+<br><a href="/">Signin Signup</a>

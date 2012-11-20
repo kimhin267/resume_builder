@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<title>Home</title>
+	</head>
+
+	<body>
+		<div>
+			<ul class = 'nav nav-pills'>
+				<li class='active'><a href="/home">Home</a></li>
+				<li class='active'><a href="/create_resume">Create Resume</a></li>
+				<li class='active'><a href="/my_resumes">View Resumes</a></li>
+				<li class='active'>
+					<% if session.has_key?('user') %>
+						<a href="/logout">Logout</a>
+					<% end %>
+				</li>
+			</ul>
+		</div>
+		<%= yield %>
+		<div id="footer">
+			Copyright Kim Hin 2012
+		</div>
+	</body>
+</html>

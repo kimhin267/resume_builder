@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'sqlite3'
-#set :session_secret, ENV["SESSION_KEY"] || 'too secret'
 enable :sessions
 =begin
 require 'dm-core'
@@ -13,6 +12,7 @@ require 'data_mapper'
 DataMapper.setup :default, "sqlite://#{Dir.pwd}/resume_builder.db"
 #If there is a error while saving, error.
 DataMapper::Model.raise_on_save_failure = true 
+
 
 class User
 	include DataMapper::Resource
@@ -55,6 +55,7 @@ class User
 	end
 end
 
+
 class Resume
 	def initialize
 		begin
@@ -72,41 +73,40 @@ class Resume
 		end
 	end
 end
-=begin
-#fail login
-class Current_user
-	def initialize
-		begin
-			db = SQLite3::Database.open 'resume_builder.db'
-			db.execute "DROP TABLE IF EXISTS Current_User"
-			db.execute "CREATE TABLE IF NOT EXISTS Current_User(id INTEGER PRIMARY KEY, User TEXT)"
-		rescue Exception => e
-			puts e
-		ensure
-			db.close if db
+
+
+get '/home' do
+	return erb :home
+end
+
+
+get '/' do
+	return erb :signin_and_signup_page
+end
+
+
+post '/signin' do
+	login = params[:login]
+	email = login['email_address']
+	password = login['password']
+	begin
+		db = SQLite3::Database.open "resume_builder.db"
+		sql_command = "SELECT COUNT(Email) FROM Users WHERE Email = '#{email}' AND Password = '#{password}'"
+		sql_result = db.execute sql_command
+		if sql_result[0][0] >= 1
+			session['user'] = login['email_address']
+			redirect to ('/home?login_id='+ session['user'])
+		else
+			redirect to ('/?login_error=Your email address or password is incorrect.')
 		end
-	end
-
-	def getUser
-		@login
-	end
-
-	def setUser=(email)
-		@login = email
+	rescue Exception => e
+		puts e
+	ensure
+		db.close if db
 	end
 end
-=end
 
-
-
-# sign up for new accont page
-get '/sign_up' do
-	return erb :sign_up
-end
-
-post '/sign_up' do
-	#puts params[:user]
-	
+post '/signup' do
 	#instantiance a new user
 	User.new #params[:user]
 	sign_up = params[:sign_up]
@@ -118,11 +118,11 @@ post '/sign_up' do
 		sql_command = "SELECT COUNT(Email) FROM Users WHERE Email = '#{email}'"
 		sql_result = db.execute sql_command
 		if email.empty? or password.empty?
-			redirect to ('sign_up?empty_signup_field=Email address or password can not be empty.')
+			redirect to ('?empty_signup_field=Email address or password can not be empty.')
 		end
 
 		if sql_result[0][0] >= 1
-			redirect to ('/sign_up?signup_error=Email address has already been taken. Try again.')
+			redirect to ('?signup_error=Email address has already been taken. Try again.')
 		end
 		stm = db.prepare "INSERT INTO Users(Email, Password) VALUES(?, ?)"
 		stm.bind_params email, password
@@ -137,103 +137,64 @@ post '/sign_up' do
 	redirect to("/")
 end
 
-# sign in page
-get '/sign_in' do
-	return erb :sign_in
-end
 
-
-# sign in action
-post '/sign_in' do
-	login = params[:login]
-	email = login['email_address']
-	password = login['password']
+get '/my_resumes' do
 	begin
-		db = SQLite3::Database.open "resume_builder.db"
-		sql_command = "SELECT COUNT(Email) FROM Users WHERE Email = '#{email}' AND Password = '#{password}'"
-		sql_result = db.execute sql_command
-		if sql_result[0][0] >= 1
-			#user = Current_user.new()
-			#user.setUser = email
-			#@x = user.getUser()
-			#insert_current_user = db.prepare "INSERT INTO Current_User(User) VALUES(?)"
-			#insert_current_user.bind_params @x
-			#insert_current_user.execute
-			session['user'] = login['email_address']
-			redirect to ('/?login_id='+ session['user'])
-		else
-			#x = db.execute "SELECT User FROM Current_User"
-			#puts x
-			redirect to ('/sign_in?login_error=Your email address or password is incorrect.')
-		end
-	rescue Exception => e
-		puts e
-	ensure
-		#insert_current_user.close if insert_current_user
-		db.close if db
-	end
-
-	redirect to ('/')
-	# add comment
-=begin @user = User.first(:email_address => login['email_address'])
-	@user_count = User.count(:email_address => login['email_address'] )
-	
-
-	if @user_count == 0
-		redirect to('/sign_in?wrong=true')
-	end
-
-
-	user_email = @user.email_address
-	user_password = @user.password
-	
-
-	if @user_count == 1 && user_password == login['password']
-		redirect to('/')
-	else
-		redirect to('/sign_in?wrong=true')
-	end	
-=end
-end
-
-# log out page / action
-get '/logout' do
-=begin
-	begin
-	db = SQLite3::Database.open 'resume_builder.db'
-	db.execute "DELETE FROM Current_User WHERE id = 1"
+		db = SQLite3::Database.open 'resume_builder.db'
+		@resumes = db.execute "SELECT id, Title FROM Resume WHERE Resume.User = '#{session['user']}'"
 	rescue Exception => e
 		puts "Exception occured"
 		puts e
 	ensure
-	db.close if db
+		db.close if db
 	end
-=end
-	session.clear
-	redirect "/"
+	return erb :my_resumes
 end
 
 
-get '/' do
-	return erb :index
-end
-
-# My resume
 get '/resume' do
 	return erb :resume	
 end
 
 
-get '/webpage' do
-	return erb :webpage
+get '/view_resumes/:id' do
+	begin
+		db = SQLite3::Database.open 'resume_builder.db'
+		@resumes = db.execute "SELECT Resume.* FROM Resume WHERE Resume.id = '#{params[:id]}'"
+	rescue Exception => e
+		puts "Exception occured"
+		puts e
+	ensure
+		db.close if db
+	end
+	@resume = @resumes[0]
+	return erb :my_resume
 end
 
-# The fill out form to create resume
-get '/resume_builder' do
-	if session['user'].nil?
-		#@need_login = 'Must sign in to access Resume Builder.'
 
-		redirect to ('/?need_login=Must sign in to access Resume Builder!')
+delete '/view_resumes/:id' do
+	begin
+		db = SQLite3::Database.open 'resume_builder.db'
+		@delete_resume = db.execute "DELETE FROM Resume WHERE Resume.id ='#{params[:id]}'" 
+	rescue Exception => e
+		puts 'Exception occured'
+		puts e
+	ensure
+		db.close if db
+	end
+	redirect to ('/my_resumes')
+end
+
+
+get '/logout' do
+	session.clear
+	redirect "/"
+end
+
+
+get '/create_resume' do
+	if session['user'].nil?
+		redirect to ('/?need_login=*Must sign in to access Resume Builder!')
 	end
 	return erb :resume_form
 end
@@ -241,9 +202,6 @@ end
 
 # Outputs the inputs from resume_builder
 post '/create_resume' do
-	#if session['user'] == NIL
-	#	redirect to ('/resume_builder?need_login=Need to login to save your resume!')
-	#end
 	@resume = params[:resume]
 	Resume.new
 	user = session['user']
@@ -290,7 +248,129 @@ post '/create_resume' do
 
 	return erb :resume_output
 end
+=begin
+# sign up for new accont page
+get '/sign_up' do
+	return erb :sign_up
+end
 
+post '/sign_up' do
+	#puts params[:user]
+	
+	#instantiance a new user
+	User.new #params[:user]
+	sign_up = params[:sign_up]
+	email = sign_up['email_address']
+	password = sign_up['password']
+	
+	begin
+		db = SQLite3::Database.open "resume_builder.db"
+		sql_command = "SELECT COUNT(Email) FROM Users WHERE Email = '#{email}'"
+		sql_result = db.execute sql_command
+		if email.empty? or password.empty?
+			redirect to ('sign_up?empty_signup_field=Email address or password can not be empty.')
+		end
+
+		if sql_result[0][0] >= 1
+			redirect to ('/sign_up?signup_error=Email address has already been taken. Try again.')
+		end
+		stm = db.prepare "INSERT INTO Users(Email, Password) VALUES(?, ?)"
+		stm.bind_params email, password
+		stm.execute
+	rescue Exception => e
+		puts "Exception occured"
+		puts e
+	ensure
+		stm.close if stm
+		db.close if db
+	end
+	redirect to("/")
+end
+=end
+
+# sign in page
+#get '/sign_in' do
+#	return erb :sign_in
+#end
+
+=begin
+# sign in action
+post '/sign_in' do
+	login = params[:login]
+	email = login['email_address']
+	password = login['password']
+	begin
+		db = SQLite3::Database.open "resume_builder.db"
+		sql_command = "SELECT COUNT(Email) FROM Users WHERE Email = '#{email}' AND Password = '#{password}'"
+		sql_result = db.execute sql_command
+		if sql_result[0][0] >= 1
+			#user = Current_user.new()
+			#user.setUser = email
+			#@x = user.getUser()
+			#insert_current_user = db.prepare "INSERT INTO Current_User(User) VALUES(?)"
+			#insert_current_user.bind_params @x
+			#insert_current_user.execute
+			session['user'] = login['email_address']
+			redirect to ('/?login_id='+ session['user'])
+		else
+			#x = db.execute "SELECT User FROM Current_User"
+			#puts x
+			redirect to ('/sign_in?login_error=Your email address or password is incorrect.')
+		end
+	rescue Exception => e
+		puts e
+	ensure
+		#insert_current_user.close if insert_current_user
+		db.close if db
+	end
+
+	redirect to ('/')
+	# add comment
+=begin@user = User.first(:email_address => login['email_address'])
+	@user_count = User.count(:email_address => login['email_address'] )
+	
+
+	if @user_count == 0
+		redirect to('/sign_in?wrong=true')
+	end
+
+
+	user_email = @user.email_address
+	user_password = @user.password
+	
+
+	if @user_count == 1 && user_password == login['password']
+		redirect to('/')
+	else
+		redirect to('/sign_in?wrong=true')
+	end	
+end
+=end
+
+# log out page / action
+
+
+=begin
+get '/' do
+	return erb :index
+end
+=end
+
+=begin
+# My resume
+get '/resume' do
+	return erb :resume	
+end
+
+
+get '/webpage' do
+	return erb :webpage
+end
+=end
+
+# The fill out form to create resume
+
+=begin
 get '/resumes/:id' do
 	begin
 		db = SQLite3::Database.open 'resume_builder.db'
@@ -317,9 +397,9 @@ delete '/resumes/:id' do
 	end
 	redirect to ('/my_resumes')
 end
+=end
 
-
-
+=begin
 get '/my_resumes' do
 	begin
 		db = SQLite3::Database.open 'resume_builder.db'
@@ -332,6 +412,7 @@ get '/my_resumes' do
 	end
 	return erb :my_resumes
 end
+=end
 
 not_found do
 	halt 404, 'Page not found'
