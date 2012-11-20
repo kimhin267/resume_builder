@@ -24,7 +24,7 @@ stm = db.prepare "INSERT INTO Resume(First_name, Last_name, Email, Home_address,
 				skills
 				)
 
-@resume['first_name'], 
+				@resume['first_name'], 
 				@resume['last_name'], 
 				@resume['email_address'], 
 				@resume['home_address'], 
@@ -39,7 +39,7 @@ stm = db.prepare "INSERT INTO Resume(First_name, Last_name, Email, Home_address,
 				@resume['graduation_date'], 
 				@resume['major'], 
 				@resume['gpa'], 
-				@reusme['company_name'], 
+				@resume['company_name'], 
 				@resume['position'], 
 				@resume['job_skills'], 
 				@resume['job_start'], 
