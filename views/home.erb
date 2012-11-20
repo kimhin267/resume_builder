@@ -1,4 +1,17 @@
 <div>
+	<ul class = 'nav nav-tabs'>
+		<li class='active'><a href="/home">Home</a></li>
+		<li><a href="/create_resume">Create Resume</a></li>
+		<li><a href="/my_resumes">View Resumes</a></li>
+		<li>
+			<% if session.has_key?('user') %>
+				<a href="/logout">Logout</a>
+			<% end %>
+		</li>
+	</ul>
+</div>
+
+<div>
 	<% if session.has_key?('user') %>
 	<h1><%= 'Hello, Welcome ' %><%= session['user'] %><%= '!' %></h1>
 	<% else %>

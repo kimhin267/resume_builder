@@ -1,7 +1,21 @@
+<div>
+	<ul class = 'nav nav-tabs'>
+		<li><a href="/home">Home</a></li>
+		<li><a href="/create_resume">Create Resume</a></li>
+		<li class='active'><a href="/my_resumes">View Resumes</a></li>
+		<li>
+			<% if session.has_key?('user') %>
+				<a href="/logout">Logout</a>
+			<% end %>
+		</li>
+	</ul>
+</div>
+
 <div class='resume'>
 	<ul>
 		<% @resumes.each do |resume| %>
-			<li><%= resume[1] %>
+			<% resume.each do |x| %>
+			<li><%= x %>
 				<a href="/resumes/<%= resume[0] %>">View Resume</a>
 				<!-- <a href="/edit">Edit |</a> -->
 				<!-- <a href="/resumes/delete/<% resume[0] %>">Delete</a> -->

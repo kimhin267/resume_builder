@@ -1,5 +1,5 @@
 require 'sinatra'
-#require 'sqlite3'
+require 'sqlite3'
 enable :sessions
 =begin
 require 'dm-core'
