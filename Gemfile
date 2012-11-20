@@ -1,7 +1,7 @@
 source :rubygems
 gem 'sinatra'
 gem 'thin'
-#gem 'sqlite3'
+gem 'sqlite3'
 
 group :development, :test  do
     gem 'sqlite3'
