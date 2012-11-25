@@ -1,158 +1,170 @@
-<div id="resume_form_area">
-	<form name="resume_builder" action="/create_resume" method="post">
-		<div class='input_div'>
-			<div>
-				<label>Title: </label>
+<div>
+	<form class='form-horizontal' name="resume_builder" action="/create_resume" method="post">
+		<div class='control-group'>
+			<label class='control-label'>Title: </label>
+			<div class='controls'>
+				<input placeholder='Name your resume' type='text' name='resume[title]'>
 			</div>
-			<input type='text' name='resume[title]'>
-		</div>
-		<div id="first_name" class="input_div">
-			<div class="label_div">
-				<label>First Name: </label>
-			</div>
-			<input type="text" name="resume[first_name]" />
 		</div>
 
-		<div id="last_name"  class="input_div">
-			<div class="label_div">
-				<label>Last Name: </label>
+
+		<div class='well well-small'>
+			<p>Personal Information</p>
+			<div class='control-group'>
+				<label class='control-label'>Name: </label>
+				<div class='controls'>
+					<input placeholder='First' type="text" name="resume[first_name]" />
+					<input placeholder='Last' type="text" name="resume[last_name]" />
+				</div>
 			</div>
-			<input type="text" name="resume[last_name]" />
+
+			<div class='control-group'>
+				<label class='control-label'>Email Address: </label>
+				<div class='controls'>
+					<input placeholder='Example@BR.com' type="text" name="resume[email_address]" />
+				</div>
+			</div>
+
+			<div class='control-group'>
+				<label class='control-label'>Home Address: </label>
+				<div class='controls'>
+					<input type="text" name="resume[home_address]">
+					<p>Home address, Apartment suite, unit, building, floor, ect.</p>
+				</div>
+			</div>	
+
+			<div class='control-group'>
+				<label class='control-label'>City: </label>
+				<div class='controls'>
+					<input type="text" name="resume[city]">
+				</div>
+			</div>	
+
+			<div class='control-group'>
+				<label class='control-label'>State: </label>
+				<div class='controls'>
+					<input type="text" name="resume[state]">
+				</div>
+			</div>	
+
+			<div class='control-group'>
+				<label class='control-label'>Zip Code: </label>
+				<div class='controls'>
+					<input type="text" name="resume[zip_code]">
+				</div>
+			</div>
+
+			<div class='control-group'>
+				<label class='control-label'>Telephone Number: </label>
+				<div class='controls'>
+					<input type="text" name="resume[telephone_number]">
+					<p>Enter telephone number without spaces.</p>
+				</div>
+			</div>
 		</div>
 
-		<div id="email_address"  class="input_div">
-			<div class="label_div">
-				<label>Email Address: </label>
+		<div class='well well-small'>
+			<p>Education</p>
+			<div class='control-group'>
+				<label class='control-label'>School name: </label>
+				<div class='controls'>
+					<input type="text" name="resume[school]">
+				</div>	
 			</div>
-			<input type="text" name="resume[email_address]" />
-		</div>
 
-		<div id="home_address"  class="input_div">
-			<div class="label_div">
-				<label>Home Address: </label>
+			<div class="control-group">
+				<label class='control-label'>City: </label>
+				<div class='controls'>
+					<input type="text" name="resume[school_city]">
+				</div>
 			</div>
-			<input type="text" name="resume[home_address]">
+
+			<div class="control-group">
+				<label class='control-label'>State: </label>
+				<div class='controls'>
+					<input type="text" name="resume[school_state]">
+				</div>
+			</div>	
+
+			<div class="control-group">
+				<label class='control-label'>Degree: </label>
+				<div class='controls'>
+					<input  type="text" name="resume[degree]">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class='control-label'>Graduation Date: </label>
+				<div class='controls'>
+					<input type="text" name="resume[graduation_date]">
+				</div>
+			</div>	
+
+			<div class='control-group'>
+				<label class='control-label'>Major: </label>
+				<div class='controls'>
+					<input type="text" name="resume[major]">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class='control-label'>GPA: </label>
+				<div class='controls'>
+					<input type="text" name="resume[gpa]">
+				</div>
+			</div>
+
+			<div class='control-group'>
+				<label class='control-label'>Company's Name: </label>
+				<div class='controls'>
+					<input type="text" name="resume[company_name]">
+				</div>
+			</div>
 		</div>	
 
-		<div id="city"  class="input_div">
-			<div class="label_div">
-				<label>City: </label>
-			</div>
-			<input type="text" name="resume[city]">
-		</div>	
 
-		<div id="state"  class="input_div">
-			<div class="label_div">
-				<label>State: </label>
-			</div>
-			<input type="text" name="resume[state]">
-		</div>	
+		<div class='well well-small'>
+			<p>Job Experience</p>
+			<div class="control-group">
+				<label class='control-label'>Position: </label>
+				<div class='controls'>
+					<input type="text" name="resume[position]">
+				</div>
+			</div>		
 
-		<div id="zip_code"  class="input_div">
-			<div class="label_div">
-				<label>Zip Code: </label>
-			</div>
-			<input type="text" name="resume[zip_code]">
-		</div>
-
-		<div id="telephone_number"  class="input_div">
-			<div class="label_div">
-				<label>Telephone Number: </label>
-			</div>
-			<input type="text" name="resume[telephone_number]">
-		</div>
-
-		<div class="input_div">
-			<div class="label_div">
-				<label>School: </label>
-			</div>
-			<input type="text" name="resume[school]">
-		</div>
-
-		<div class="input_div">
-			<div class="label_div">
-				<label>City: </label>
-			</div>
-			<input type="text" name="resume[school_city]">
-		</div>
-
-		<div class="input_div">
-			<div class="label_div">
-				<label>State: </label>
-			</div>
-			<input type="text" name="resume[school_state]">
-		</div>	
-
-		<div class="input_div">
-			<div class="label_div">
-				<label>Degree: </label>
-			</div>
-			<input type="text" name="resume[degree]">
-		</div>
-
-		<div class="input_div">
-			<div class="label_div">
-				<label>Graduation Date: </label>
-			</div>
-			<input type="text" name="resume[graduation_date]">
-		</div>	
-
-		<div class="input_div">
-			<div class="label_div">
-				<label>Major: </label>
-			</div>
-			<input type="text" name="resume[major]">
-		</div>
-
-		<div class="input_div">
-			<div class="label_div">
-				<label>GPA: </label>
-			</div>
-			<input type="text" name="resume[gpa]">
-		</div>
-
-		<div class="input_div">
-			<div class="label_div">
-				<label>Company's Name: </label>
-			</div>
-			<input type="text" name="resume[company_name]">
-		</div>	
-
-		<div class="input_div">
-			<div class="label_div">
-				<label>Position: </label>
-			</div>
-			<input type="text" name="resume[position]">
-		</div>	
-
-		<div class="input_div">
-			<div class="label_div">
+			<div class="control-group">
 				<!-- make into drop box -->
-				<label>Start date (month/year): </label>
+				<label class='control-label'>Start date (month/year): </label>
+				<div class='controls'>
+					<input type="text" name="resume[job_start]">
+				</div>
 			</div>
-			<input type="text" name="resume[job_start]">
-		</div>
 
-		<div class="input_div">
-			<div class="label_div">
+			<div class="control-group">
 				<!-- make into drop box -->
-				<label>End date (month/year): </label>
-			</div>
-			<input type="text" name="resume[job_end]">
-		</div>	
+				<label class='control-label'>End date (month/year): </label>
+				<div class='controls'>
+					<input type="text" name="resume[job_end]">
+				</div>
+			</div>	
 
-		<div class="input_div">
-			<div class="label_div">
-				<label>Job skills: </label>
-			</div>
-			<input type="text" name="resume[job_skills]">
-		</div>	
+			<div class="control-group">
+				<label class='control-label'>Job experience: </label>
+				<div class='controls'>
+					<input type="text" name="resume[job_skills]">
+				</div>
+			</div>	
+		</div>
+			
 
-		<div class="input_div">
-			<div class="label_div">
-				<label>skills: </label>
+		<div class='well well-small'>
+			<p>Other skills/experience</p>
+			<div class='control-group'>
+				<label class='control-label'>skills/experience: </label>
+				<div class='controls'>
+					<input type="text" name="resume[skills]">
+				</div>
 			</div>
-			<input type="text" name="resume[skills]">
 		</div>
 		<input type="submit" value="Submit">							
 	</form>
