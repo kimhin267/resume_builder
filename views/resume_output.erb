@@ -1,3 +1,21 @@
+<div>
+	<ul class = 'nav nav-tabs'>
+		<li><a href="/">BR</a></li>
+		<li class='active'><a href="/create_resume">Create Resume</a></li>
+		<li><a href="/my_resumes">View Resumes</a></li>
+		<li>
+			<% if session['user'].nil? %>
+			<a href="/signin_signup_page">Signin/Signup</a>
+			<%end%>
+		</li>
+		<li>
+			<% if session.has_key?('user') %>
+				<a href="/logout">Logout</a>
+			<% end %>
+		</li>
+	</ul>
+</div>
+
 <div id="topheader">
 	<span id="name"><%= @resume['first_name'] + ' ' + @resume['last_name'] %></span> <span id="email"><%= @resume['email_address'] %></span>	
 	</div>

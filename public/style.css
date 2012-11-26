@@ -2,7 +2,57 @@ div.error_message{
 	color: red;
 	font-weight: bold;
 }
-
+div#compTIA_logo{
+	text-align: center;
+}
+#botborders {
+	border-bottom: 1px solid black;
+	width: 1031px;
+	margin-top: -13px;
+	margin-bottom: -8px;
+}
+#topheader {
+	margin-top: 48px;
+	margin-bottom: 15px;
+	width: 1031px;
+}
+#sign_up_error{
+	margin-top: 50px;
+	color: red;
+}
+#sign_in_error{
+	margin-top: 50px;
+	color: red;
+}
+#layout_body{
+	display: inline-block;
+}
+#signin_form{
+	margin-left: 40px;
+}
+#signup_form{
+	margin-left: 40px;
+}
+#footer{
+	text-align: center;
+}
+.nav-tabs{
+	width: 1000px;
+}
+#footer_link{
+	padding-top: 100px;
+	padding-bottom: 10px;
+	text-align: center;
+	clear: both;
+}
+#form-page-title{
+	width: 0px;
+}
+#form-page-input-title{
+	margin-left: 0px;
+	padding-left: 50px;
+}
+/*
 body{
 	background:#FFFFFF;
 	font-family:  arial;
@@ -54,18 +104,9 @@ ul.nav_bar li a{
 	padding:5px;
 	color: white;
 }
+*/
 
-#botborders {
-	border-bottom: 1px solid black;
-	width: 1031px;
-	margin-top: -13px;
-	margin-bottom: -8px;
-}
-#topheader {
-	margin-top: 48px;
-	margin-bottom: 15px;
-	width: 1031px;
-}
+/*
 #webpage_under_construction{
 	font-size: 4em;
 	font-weight: bold;
@@ -77,14 +118,9 @@ ul.nav_bar li a{
 	font-size: 3em;
 	font-weight: bold;
 }
-#sign_up_error{
-	margin-top: 50px;
-	color: red;
-}
-#sign_in_error{
-	margin-top: 50px;
-	color: red;
-}
+*/
+
+/*
 .links {
 	font-size: 1.5em;
 	font-weight: bold;
@@ -106,7 +142,7 @@ h3{
 	font-size: 1em;
 	font-weight: normal;
 	margin-top: -10px;
-*/
+
 div.job {
 	float: left;
 	width: 500px;
@@ -129,6 +165,7 @@ div.experience {
 	float: left;
 	min-height: 87px;
 }
+
 div.resume ul li{
 	text-decoration: none;
 }
@@ -139,10 +176,9 @@ span#email{
 	font-weight: bold;
 	float: right;
 }
-div#compTIA_logo{
-	text-align: center;
-}
+*/
 
+/*
 div#right_side_panel{
 	margin-left: 1032px;
 	margin-top: -362px;
@@ -151,7 +187,7 @@ ul.subcategories{
 	margin-top: 0px;
 	margin-bottom: 1px;
 }
-/*
+
 a{
 	text-decoration: none;
 	color: blue;
@@ -160,11 +196,12 @@ a{
 ul {
 	margin-top: -7px;
 }
-*/
+
 .nav_bar li:hover{
    background: red;
  }
 a:active{
 	color: blue;
 }
+*/
 ;

@@ -1,5 +1,5 @@
 require 'sinatra'
-#require 'sqlite3'
+require 'sqlite3'
 enable :sessions
 =begin
 require 'dm-core'
@@ -75,13 +75,13 @@ class Resume
 end
 
 
-get '/home' do
-	return erb :home
+get '/signin_signup_page' do
+	return erb :signin_and_signup_page
 end
 
 
 get '/' do
-	return erb :signin_and_signup_page
+	return erb :home
 end
 
 
@@ -89,15 +89,16 @@ post '/signin' do
 	login = params[:login]
 	email = login['email_address']
 	password = login['password']
+	
 	begin
 		db = SQLite3::Database.open "resume_builder.db"
 		sql_command = "SELECT COUNT(Email) FROM Users WHERE Email = '#{email}' AND Password = '#{password}'"
 		sql_result = db.execute sql_command
 		if sql_result[0][0] >= 1
 			session['user'] = login['email_address']
-			redirect to ('/home?login_id='+ session['user'])
+			redirect to ('/')
 		else
-			redirect to ('/?login_error=Your email address or password is incorrect.')
+			redirect to ('/signin_signup_page?login_error=Your email address or password is incorrect.')
 		end
 	rescue Exception => e
 		puts e
@@ -118,11 +119,11 @@ post '/signup' do
 		sql_command = "SELECT COUNT(Email) FROM Users WHERE Email = '#{email}'"
 		sql_result = db.execute sql_command
 		if email.empty? or password.empty?
-			redirect to ('?empty_signup_field=Email address or password can not be empty.')
+			redirect to ('/signin_signup_page?empty_signup_field=Email address or password can not be empty.')
 		end
 
 		if sql_result[0][0] >= 1
-			redirect to ('?signup_error=Email address has already been taken. Try again.')
+			redirect to ('/signin_signup_page?email_taken_error=Email address has already been taken. Try again.')
 		end
 		stm = db.prepare "INSERT INTO Users(Email, Password) VALUES(?, ?)"
 		stm.bind_params email, password
@@ -134,11 +135,14 @@ post '/signup' do
 		stm.close if stm
 		db.close if db
 	end
-	redirect to("/")
 end
 
-
+# user's resumes
 get '/my_resumes' do
+	if session['user'].nil?
+		redirect to ('/signin_signup_page?need_login=Must sign in to view resumes!')
+	end
+
 	begin
 		db = SQLite3::Database.open 'resume_builder.db'
 		@resumes = db.execute "SELECT id, Title FROM Resume WHERE Resume.User = '#{session['user']}'"
@@ -151,7 +155,7 @@ get '/my_resumes' do
 	return erb :my_resumes
 end
 
-
+# my personal resume
 get '/resume' do
 	return erb :resume	
 end
@@ -194,7 +198,7 @@ end
 
 get '/create_resume' do
 	if session['user'].nil?
-		redirect to ('/?need_login=*Must sign in to access Resume Builder!')
+		redirect to ('/signin_signup_page?need_login=Must sign in to access Resume Builder!')
 	end
 	return erb :resume_form
 end
