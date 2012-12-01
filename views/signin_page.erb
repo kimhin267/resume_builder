@@ -1,0 +1,75 @@
+<div >
+	<ul class = 'nav nav-tabs'>
+		<li><a href="/">BR</a></li>
+		<li><a href="/create_resume">Create Resume</a></li>
+		<li><a href="/my_resumes">View Resumes</a></li>
+		<li class='active'>
+			<% if session['user'].nil? %>
+			<a href="">Signin</a>
+			<%end%>
+		</li>
+		<li>
+			<% if session['user'].nil? %>
+			<a href="/signup_page">Signup</a>
+			<%end%>
+		</li>
+		<li>
+			<% if session.has_key?('user') %>
+				<a href="/logout">Logout</a>
+			<% end %>
+		</li>
+	</ul>
+</div>
+
+
+<div id='signin_form' >
+	<div>
+		<div id='sign_in_error'>
+			<%if params[:login_error] or params[:need_login]%>
+				<span class='alert alert-error bold'>	
+					<%= '* ' %>
+					<%= params[:login_error] %>
+					<%= params[:need_login] %>
+				</span>
+			<%end%>
+			<div><br></div>
+		</div>
+	</div>
+
+
+	<div>
+		<div class='well well-small'>
+			<div>
+				<div>Signin</div><br>
+			
+				<form class='form-horizontal' action="/signin" method="post">
+					<div class='control-group'>
+						<label class='control-label'>Email: </label>
+						<div class='controls'>
+							<input type="text" id="inputEmail" name="login[email_address]" placeholder='Email' />
+						</div>
+					</div>
+
+					<div class='control-group'>
+						<label class='control-label'>Password: </label>
+						<div class='controls'>
+							<input type="password" id="inputPassword" name="login[password]" placeholder='Password' /s>
+						</div>
+					</div>
+
+					<div class="control-group">
+					   	<div>
+					    	<br><button type="submit" class="btn span5 btn-primary">Signin</button>
+					    </div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div >
+		<a class="btn span5" id="signup_btn" href="/signup_page">Signup</a>	
+	</div>
+</div>
+
+

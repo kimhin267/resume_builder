@@ -1,45 +1,42 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Kim's Blog</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-	</head>
+<div>
+	<ul class = 'nav nav-tabs'>
+		<li class='active'><a href="/">BR</a></li>
+		<li><a href="/create_resume">Create Resume</a></li>
+		<li><a href="/my_resumes">View Resumes</a></li>
+		<li>
+			<% if session['user'].nil? %>
+			<a href="/signin_page">Signin</a>
+			<%end%>
+		</li>
+		<li>
+			<% if session['user'].nil? %>
+			<a href="/signup_page">Signup</a>
+			<%end%>
+		</li>
+		<li>
+			<% if session.has_key?('user') %>
+				<a href="/logout">Logout</a>
+			<% end %>
+		</li>
+	</ul>
+</div>
 
-	<body id="index_body">
-		
-		<ul class="nav">
-			<li><a href="/">Home</a></li>
-			<li><a href="/webpage">Webpage</a></li>
-			<li><a href="/resume_builder">Resume Builder</a></li>
-			<li><a href="/resume">Resume</a></li>
-		</ul>
-		
-		<div id="index_h1">
-			<h1>Welcome <%= session['user'] %></h1>
-		</div>
-		<div>
-			<span class='links'>
-				<%= params['need_login'] %>
-				<a href="/sign_in">Sign in</a> 
-			<!--<% if session.has_key?('user') %>
-			<% else %>
-				Please<a href="/sign_in"> Sign in</a>
-			<% end %>-->
-			</span>
-		</div>
-		<div class='links'>
-			<span>
-				<% if session.has_key?('user') %>
-					<a href="/logout">Logout</a>
-				<% end %>
-			</span>
-		</div>
-		<div class='links'>
-			<a href="/sign_up">Sign up</a>
-		</div>
-		
-		<div class='links'>
-			<a href="/my_resumes">My Resumes</a>
-		</div>
-	</body>
-</html>
+
+<div class="hero-unit">
+	<% if session.has_key?('user') %>
+		<h1><%= 'Hello, Welcome ' %><%= session['user'] %><%= '!' %></h1>
+	<% else %>
+		<h1><%= 'Hello, Welcome to Breezy Resume!' %></h1>
+	<%end%>
+	<p>Tired of formatting your resume each time? Well look no further, BreezyResume universal resume builder has everything formatted for you! All you have to do is fill out the resume form and BAM you have a spectacular resume for your prospective employer. To learn more about Breezy Resume click on the learn more button.</p>
+	<p><a class="btn btn-primary btn-large" href='/resume'>Learn more</a></p>
+</div>
+
+
+<div>
+	
+</div>
+
+<div class='error_message'>
+	<h4><%= params['need_login'] %>
+</div>

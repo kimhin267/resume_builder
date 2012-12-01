@@ -24,23 +24,27 @@ div#compTIA_logo{
 	margin-top: 50px;
 	color: red;
 }
-#layout_body{
-	display: inline-block;
-}
+
 #signin_form{
-	margin-left: 40px;
+	width: 420px;
+	margin-left: auto;
+	margin-right: auto;
 }
 #signup_form{
-	margin-left: 40px;
+	width: 420px;
+	margin-left: auto;
+	margin-right: auto;
 }
 #footer{
-	text-align: center;
+	width: 1004px;
+	margin-left: auto;
+	margin-right: auto;
 }
 .nav-tabs{
 	width: 1000px;
 }
 #footer_link{
-	padding-top: 100px;
+	padding-top: 400px;
 	padding-bottom: 10px;
 	text-align: center;
 	clear: both;
@@ -51,6 +55,38 @@ div#compTIA_logo{
 #form-page-input-title{
 	margin-left: 0px;
 	padding-left: 50px;
+}
+
+#outer_container{
+	margin-left: auto;
+	margin-right: auto;
+	width: 1004px;
+}
+#signup_btn{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.bold{
+	font-weight: bold;
+}
+#resume-list{
+	list-style-type: none;
+}
+.inline-block{
+	display: inline-block;
+}
+#center-resume-title{
+	margin-top: 4px;
+}
+#resume-list-container{
+	padding-top: 25px;
+}
+#resume-container{
+	width: 650px;
+	margin-left: auto;
+	margin-right: auto;
 }
 /*
 body{

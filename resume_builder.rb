@@ -1,5 +1,5 @@
 require 'sinatra'
-#require 'sqlite3'
+require 'sqlite3'
 enable :sessions
 =begin
 require 'dm-core'
@@ -42,7 +42,7 @@ DataMapper.auto_upgrade!
 class User
 	def initialize
 		begin
-			db = SQLite3::Database.open "resume_builder.db"
+			db = SQLite3::Database.open "resume_builder.db" || ENV['DATABASE_URL']
 			db.execute "CREATE TABLE IF NOT EXISTS Users(id INTEGER PRIMARY KEY AUTOINCREMENT, Email TEXT UNIQUE, Password TEXT NOT NULL,
 				CHECK(Email <> ''), CHECK(Password <> ''))"
 			
@@ -75,13 +75,13 @@ class Resume
 end
 
 
-get '/signin_signup_page' do
-	return erb :signin_and_signup_page
+get '/' do
+	return erb :index
 end
 
 
-get '/' do
-	return erb :home
+get '/signin_page' do
+	return erb :signin_page
 end
 
 
@@ -98,7 +98,7 @@ post '/signin' do
 			session['user'] = login['email_address']
 			redirect to ('/')
 		else
-			redirect to ('/signin_signup_page?login_error=Your email address or password is incorrect.')
+			redirect to URI.parse(URI.encode('/signin_page?login_error=Your email address or password is incorrect.'))
 		end
 	rescue Exception => e
 		puts e
@@ -106,6 +106,12 @@ post '/signin' do
 		db.close if db
 	end
 end
+
+
+get '/signup_page' do
+	return erb :signup_page
+end
+
 
 post '/signup' do
 	#instantiance a new user
@@ -119,11 +125,11 @@ post '/signup' do
 		sql_command = "SELECT COUNT(Email) FROM Users WHERE Email = '#{email}'"
 		sql_result = db.execute sql_command
 		if email.empty? or password.empty?
-			redirect to ('/signin_signup_page?empty_signup_field=Email address or password can not be empty.')
+			redirect to URI.parse(URI.encode('/signup_page?empty_signup_field=Email address or password can not be empty.'))
 		end
 
 		if sql_result[0][0] >= 1
-			redirect to ('/signin_signup_page?email_taken_error=Email address has already been taken. Try again.')
+			redirect to URI.parse(URI.encode('/signup_page?email_taken_error=Email address has already been taken. Try again.'))
 		end
 		stm = db.prepare "INSERT INTO Users(Email, Password) VALUES(?, ?)"
 		stm.bind_params email, password
@@ -140,7 +146,7 @@ end
 # user's resumes
 get '/my_resumes' do
 	if session['user'].nil?
-		redirect to ('/signin_signup_page?need_login=Must sign in to view resumes!')
+		redirect to URI.parse(URI.encode('/signin_page?need_login=Must sign in to view resumes!'))
 	end
 
 	begin
@@ -198,7 +204,7 @@ end
 
 get '/create_resume' do
 	if session['user'].nil?
-		redirect to ('/signin_signup_page?need_login=Must sign in to access Resume Builder!')
+		redirect to URI.parse(URI.encode('/signin_page?need_login=Must sign in to access Resume Builder!'))
 	end
 	return erb :resume_form
 end
@@ -209,6 +215,7 @@ post '/create_resume' do
 	@resume = params[:resume]
 	Resume.new
 	user = session['user']
+	title = @resume['title']
 	first_name = @resume['first_name']
 	last_name = @resume['last_name'] 
 	email_address = @resume['email_address']
@@ -231,6 +238,7 @@ post '/create_resume' do
 	job_end = @resume['job_end'] 
 	skills = @resume['skills']
 
+
 	begin
 		db = SQLite3::Database.open "resume_builder.db"
 		
@@ -238,10 +246,11 @@ post '/create_resume' do
 				Zip_code, Telephone_number, School, School_city, School_state, Degree, Graduation_date, Major, 
 				GPA, Company_name, Position, Job_skills, Job_start, Job_end, Skills)
 				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-		stm.bind_params session['user'], @resume['title'], first_name, last_name, email_address, home_address, city, state, zip_code, 
+		stm.bind_params session['user'], title, first_name, last_name, email_address, home_address, city, state, zip_code, 
 				telephone_number, school, school_city, school_state, degree, graduation_date, major, gpa, 
 				company_name, position, job_skills, job_start, job_end, skills
 		stm.execute
+		
 	rescue Exception => e
 		puts 'Exception occured'
 		puts e

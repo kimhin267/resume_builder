@@ -6,14 +6,17 @@
 	</head>
 
 	<body id='layout_body'>
-		<%= yield %>
+		<div id="outer_container">
+			<%= yield %>
 
-		<div id='footer_link'>
-			<a href="/resume">About</a>
-		</div>
+			
 
-		<div id="footer">
-			Copyright Kim Hin 2012
+			<div id="footer">
+				<div id='footer_link'>
+					<a href="/resume">About</a>
+					<p>Copyright Kim Hin 2012</p>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

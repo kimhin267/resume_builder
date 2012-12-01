@@ -1,0 +1,69 @@
+<div >
+	<ul class = 'nav nav-tabs'>
+		<li><a href="/">BR</a></li>
+		<li><a href="/create_resume">Create Resume</a></li>
+		<li><a href="/my_resumes">View Resumes</a></li>
+		<li>
+			<% if session['user'].nil? %>
+			<a href="/signin_page">Signin</a>
+			<%end%>
+		</li>
+		<li class='active'>
+			<% if session['user'].nil? %>
+			<a href="">Signup</a>
+			<%end%>
+		</li>
+		<li>
+			<% if session.has_key?('user') %>
+				<a href="/logout">Logout</a>
+			<% end %>
+		</li>
+	</ul>
+</div>
+
+
+<div id='signup_form'>
+	<div>
+		<div id='sign_up_error'>
+			<%if params[:email_taken_error] or params[:empty_signup_field]%>
+				<span class='alert alert-error bold'>	
+					<%='* '%>
+					<%= params[:email_taken_error] %>
+					<%= params[:empty_signup_field] %>
+				</span>
+			<%end%>
+			<div><br></div>
+		</div>
+	</div>	
+
+
+	<div>
+		<div class='well well-small'>			
+			<div>
+				<div>Signup</div><br>
+
+				<form class='form-horizontal' action="/signup" method="post">
+					<div class='control-group'>
+						<label class='control-label'>Email: </label>
+						<div class='controls'>
+							<input placeholder='Email' type="text" name="sign_up[email_address]" />
+						</div>
+					</div>
+
+					<div class='control-group'>
+						<label class='control-label'>Password: </label>
+						<div class='controls'>
+							<input placeholder='Password' type="password" name="sign_up[password]" /> 
+						</div>
+					</div>
+					
+					<div class="control-group">
+			    		<div>
+			      			<br><button type="submit" class="btn btn-primary span5">Signup</button>
+			    		</div>
+			  		</div>
+				</form>	
+			</div>
+		</div>
+	</div>
+</div>

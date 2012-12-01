@@ -5,7 +5,12 @@
 		<li><a href="/my_resumes">View Resumes</a></li>
 		<li>
 			<% if session['user'].nil? %>
-			<a href="/signin_signup_page">Signin/Signup</a>
+			<a href="/signin_page">Signin</a>
+			<%end%>
+		</li>
+		<li>
+			<% if session['user'].nil? %>
+			<a href="/signup_page">Signup</a>
 			<%end%>
 		</li>
 		<li>
@@ -22,7 +27,7 @@
 		<div class='control-group'>
 			<label id='form-page-title' class='control-label'>Title: </label>
 			<div class='controls' id='form-page-input-title'>
-				<input class='span4' placeholder='Name of resume' type='text' name='resume[title]'>
+				<input class='span4' placeholder='Max 35 characters' type='text' name='resume[title]'>
 			</div>
 		</div>
 
