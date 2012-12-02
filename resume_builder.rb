@@ -238,7 +238,9 @@ post '/create_resume' do
 	job_end = @resume['job_end'] 
 	skills = @resume['skills']
 
-
+if title.empty?
+	redirect to URI.parse(URI.encode('/create_resume?no-title-found=Must give resume a title.'))
+end
 	begin
 		db = SQLite3::Database.open "resume_builder.db"
 		
