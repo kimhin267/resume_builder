@@ -1,110 +1,107 @@
+/*website layout*/
 #layout_body{
 	background-image: url('http://i.poweredtemplates.com/wallpapers/ppt_blue_1024_768.jpg');
-	background-size: 1004px 1000px;
+	background-size: 1004px 100%;
 	background-repeat: no-repeat;
 	background-position-x: center;
-	background-position-y: 38px;
-}
-div.error_message{
-	color: red;
-	font-weight: bold;
-}
-div#compTIA_logo{
-	text-align: center;
-}
-#botborders {
-	border-bottom: 1px solid black;
-	width: 1031px;
-	margin-top: -13px;
-	margin-bottom: -8px;
-}
-#topheader {
-	margin-top: 48px;
-	margin-bottom: 15px;
-	width: 1031px;
-}
-#sign_up_error{
-	margin-top: 50px;
-	color: red;
-}
-#sign_in_error{
-	margin-top: 50px;
-	color: red;
-}
-
-#signin_form{
-	width: 420px;
-	margin-left: auto;
-	margin-right: auto;
-}
-#signup_form{
-	width: 420px;
-	margin-left: auto;
-	margin-right: auto;
-}
-#footer{
-	width: 1004px;
-	margin-left: auto;
-	margin-right: auto;
-}
-.nav-tabs{
-	width: 1000px;
-}
-#footer_link{
-	padding-top: 400px;
-	padding-bottom: 10px;
-	text-align: center;
-	clear: both;
-}
-#form-page-title{
-	width: 0px;
-}
-#form-page-input-title{
-	margin-left: 0px;
-	padding-left: 50px;
-}
-
+	background-position-y: 38px;}
 #outer_container{
 	margin-left: auto;
 	margin-right: auto;
-	width: 1004px;
-}
+	width: 1004px;}
+
+
+/*error messages*/
+#sign_up_error{
+	margin-top: 50px;
+	color: red;}
+#sign_in_error{
+	margin-top: 50px;
+	color: red;}
+
+
+/*forms*/
+#about-form{width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;}
+#signin_form{
+	width: 420px;
+	margin-left: auto;
+	margin-right: auto;}
+#signup_form{
+	width: 420px;
+	margin-left: auto;
+	margin-right: auto;}
+#form-page-title{
+	width: 0px;}
+#form-page-input-title{
+	margin-left: 0px;
+	padding-left: 50px;}
 #signup_btn{
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 0px;
-	padding-right: 0px;
-}
-.bold{
-	font-weight: bold;
-}
+	padding-right: 0px;}
 #resume-list{
-	list-style-type: none;
-}
-.inline-block{
-	display: inline-block;
-}
+	list-style-type: none;}
 #center-resume-title{
-	margin-top: 4px;
-}
+	margin-top: 4px;}
 #resume-list-container{
-	padding-top: 25px;
-}
+	padding-top: 25px;}
 #resume-container{
 	width: 650px;
 	margin-left: auto;
+	margin-right: auto;}
+.resume-form{
+	width: 800px;
+	padding-top: 25px;
 	margin-right: auto;
-}
-.nav-bar{
-	position: fixed;
-}
+	margin-left: auto;
+	background: lightcyan;}
+#submit-button-form{text-align: center;}
+#submit-button-resume-form{padding: 15px 0px;
+	background: lightcyan;}
+
+
+/*nav bar*/
+.nav-bar{position: fixed;}
+.nav-background{background: black;}
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover{background-color: lightcyan;}
+
+
+
+#topheader {
+	margin-top: 48px;
+	margin-bottom: 15px;
+	width: 1031px;}
+#footer{
+	width: 1004px;
+	margin-left: auto;
+	margin-right: auto;}
+#footer_link{
+	padding-top: 500px;
+	padding-bottom: 10px;
+	text-align: center;
+	clear: both;}
+
+.bold{
+	font-weight: bold;}
+.inline-block{
+	display: inline-block;}
 #index-hero-unit{
 	width: 750px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-top: 60px;
-}
+	margin-top: 60px;}
+div.error_message{
+	color: red;
+	font-weight: bold;}
+div#compTIA_logo{
+	text-align: center;}
 /*
+
 body{
 	background:#FFFFFF;
 	font-family:  arial;

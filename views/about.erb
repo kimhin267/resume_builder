@@ -1,0 +1,46 @@
+<div class='nav-background'>
+	<ul class = 'nav nav-tabs'>
+		<li><a href="/">BR</a></li>
+		<li><a href="/create_resume">Create Resume</a></li>
+		<li><a href="/my_resumes">View Resumes</a></li>
+		<li>
+			<% if session['user'].nil? %>
+			<a href="/signin_page">Signin</a>
+			<%end%>
+		</li>
+		<li>
+			<% if session['user'].nil? %>
+			<a href="/signup_page">Signup</a>
+			<%end%>
+		</li>
+		<li>
+			<% if session.has_key?('user') %>
+				<a href="/logout">Logout</a>
+			<% end %>
+		</li>
+	</ul>
+</div>
+
+<div>
+	<div class='well well-large' id='about-form'>
+		<div><h2>Background:</h2></div>
+		<div>
+			Breezy Resume is a project I decided to undertake to help get better in making websites and also to learn about other HTML tags, which I never worked with before. I've also not taken any courses to learn HTML and CSS; I learned everything from quick tutorials and searching the web for answers. This is the first website I've worked on. The whole site was built without using any website templates and with help from Twitter Bootstrap. The site is not perfect, but I will work hard to improve on it!
+		</div>
+
+		<div><h2>What is Breezy Resume?</h2></div>
+		<div>
+			Breezy Resume is a resume builder for students or anyone else alike. The site will handle all of the formatting for you. All that needs to be done is to fill out the form from the <a href="/create_resume">Create Resume</a> tab. Then your resumes will be saved and can be viewed in the <a href="/my_resumes">View Resume</a> tab. You can also delete unwanted resumes by clicking on the delete button.<br><br>
+
+			*Edit button will be up soon.*<br>
+			*The format for this resume builder is in MLA format, to learn more about MLA format click <a href="http://www.mla.org/about">here</a>.*
+		</div>
+
+		<div><h2>FAQS:</hi></div>
+		<div>
+			QUESTION: Is there any cost for Breezy Resume?<br>
+			ANSWER: No, Breezy Resume is free.
+		</div>
+
+	</div>
+</div>

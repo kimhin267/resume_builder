@@ -1,4 +1,4 @@
-<div>
+<div class='nav-background'>
 	<ul class = 'nav nav-tabs'>
 		<li><a href="/">BR</a></li>
 		<li class='active'><a href="/create_resume">Create Resume</a></li>
@@ -24,17 +24,19 @@
 <div>
 	<%= params['no-title-found'] %>
 </div>
+
 <div>
 	<form class='form-horizontal' name="resume_builder" action="/create_resume" method="post">
-		<div class='control-group'>
-			<label id='form-page-title' class='control-label'>Title: </label>
-			<div class='controls' id='form-page-input-title'>
-				<input class='span4' placeholder='Max 35 characters'  type='text' name='resume[title]'>
+		<div class='well well-small resume-form'>	
+			<div class='control-group'>
+				<label id='form-page-title' class='control-label'>Title: </label>
+				<div class='controls' id='form-page-input-title'>
+					<input class='span4' placeholder='Max 35 characters'  type='text' name='resume[title]'>
+				</div>
 			</div>
 		</div>
 
-
-		<div class='well well-small'>
+		<div class='well well-small resume-form'>
 			<p>Personal Information</p>
 			<div class='control-group'>
 				<label class='control-label'>Name: </label>
@@ -87,7 +89,7 @@
 			</div>
 		</div>
 
-		<div class='well well-small'>
+		<div class='well well-small resume-form'>
 			<p>Education</p>
 			<div class='control-group'>
 				<label class='control-label'>School's name: </label>
@@ -147,7 +149,7 @@
 		</div>	
 
 
-		<div class='well well-small'>
+		<div class='well well-small resume-form'>
 			<p>Job Experience</p>
 			<div class="control-group">
 				<label class='control-label'>Position: </label>
@@ -182,7 +184,7 @@
 		</div>
 			
 
-		<div class='well well-small'>
+		<div class='well well-small resume-form'>
 			<p>Other skills/experience</p>
 			<div class='control-group'>
 				<label class='control-label'>skills/experience: </label>
@@ -191,6 +193,9 @@
 				</div>
 			</div>
 		</div>
-		<input type="submit" value="Submit">							
+
+		<div id='submit-button-form'>
+			<input class='btn span4' id='submit-button-resume-form' type="submit" value="Submit">	
+		</div>						
 	</form>
 </div>

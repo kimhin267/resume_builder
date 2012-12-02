@@ -96,7 +96,7 @@ post '/signin' do
 		sql_result = db.execute sql_command
 		if sql_result[0][0] >= 1
 			session['user'] = login['email_address']
-			redirect to ('/')
+			redirect to ('/my_resumes')
 		else
 			redirect to URI.parse(URI.encode('/signin_page?login_error=Your email address or password is incorrect.'))
 		end
@@ -262,6 +262,10 @@ end
 	end
 
 	return erb :resume_output
+end
+
+get '/about' do
+	return erb :about
 end
 =begin
 # sign up for new accont page
