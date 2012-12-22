@@ -219,12 +219,23 @@ end
 # Outputs the inputs from resume_builder
 post '/create_resume' do
 	#DataMapper::Model.raise_on_save_failure = true
-	resume = Resume.new(params[:resume])
-	#resume.education = Education.new
-	#resume.job = Job.new
-	#resume.otherskill = Otherskill.new
+	@user = User.first(:email_address => session['user'])
+	@resume = @user.resumes.new(params[:resume])
+	@education = @resume.educations.new(params[:education])
+	@job = @resume.jobs.new(params[:job])
+	@otherskill = @resume.otherskills.new(params[:otherskill])
 	#newResume.user = session['user']
+=begin
+	for education in params[:education] do
+		education = Education.new(:education)
 
+	end
+=end
+	puts @user
+	@resume.save
+	@education.save
+	@job.save
+	@otherskill.save
 =begin
 	education.school = @resume['school']
 	education.school_city = @resume['school_city']
@@ -243,8 +254,7 @@ post '/create_resume' do
 	otherskill.skills = @resume['skills']
 =end	
 	
-	 	resume.save
-	 	return erb :resume_output
+	 	
 
 =begin
 	begin
