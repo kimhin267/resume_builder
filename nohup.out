@@ -1,0 +1,4 @@
+== Shotgun/Thin on http://127.0.0.1:9393/
+>> Thin web server (v1.5.0 codename Knife)
+>> Maximum connections set to 1024
+>> Listening on 127.0.0.1:9393, CTRL+C to stop

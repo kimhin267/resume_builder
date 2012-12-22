@@ -1,32 +1,30 @@
 <div class='nav-background'>
 	<ul class = 'nav nav-tabs'>
-		<li><a href="/">BR</a></li>
-		<li class='active'><a href="/create_resume">Create Resume</a></li>
-		<li><a href="/my_resumes">View Resumes</a></li>
+		<li><a href='/'>BR</a></li>
+		<li class='active'><a href='/create_resume'>Create Resume</a></li>
+		<li><a href='/my_resumes'>View Resumes</a></li>
 		<li>
 			<% if session['user'].nil? %>
-			<a href="/signin_page">Signin</a>
+			<a href='/signin_page'>Signin</a>
 			<%end%>
 		</li>
 		<li>
 			<% if session['user'].nil? %>
-			<a href="/signup_page">Signup</a>
+			<a href='/signup_page'>Signup</a>
 			<%end%>
 		</li>
 		<li>
 			<% if session.has_key?('user') %>
-				<a href="/logout">Logout</a>
+				<a href='/logout'>Logout</a>
 			<% end %>
 		</li>
 	</ul>
 </div>
 
-<div>
-	<%= params['no-title-found'] %>
-</div>
+
 
 <div>
-	<form class='form-horizontal' name="resume_builder" action="/create_resume" method="post">
+	<form class='form-horizontal' name='resume_builder' action='/create_resume' method='post'>
 		<div class='well well-small resume-form'>	
 			<div class='control-group'>
 				<label id='form-page-title' class='control-label'>Title: </label>
@@ -41,50 +39,50 @@
 			<div class='control-group'>
 				<label class='control-label'>Name: </label>
 				<div class='controls'>
-					<input class='span4' placeholder='First' type="text" name="resume[first_name]" />
-					<input class='span4' placeholder='Last' type="text" name="resume[last_name]" />
+					<input class='span4' placeholder='First' type='text' name='resume[first_name]' />
+					<input class='span4' placeholder='Last' type='text' name='resume[last_name]' />
 				</div>
 			</div>
 
 			<div class='control-group'>
 				<label class='control-label'>Email Address: </label>
 				<div class='controls'>
-					<input class='span6' placeholder='Example@BR.com' type="text" name="resume[email_address]" />
+					<input class='span6' placeholder='Example@BR.com' type='text' name='resume[email_address]' />
 				</div>
 			</div>
 
 			<div class='control-group'>
 				<label class='control-label'>Home Address: </label>
 				<div class='controls'>
-					<input placeholder='Home address, Apartment suite, unit, building, floor, ect.' class='span6' type="text" name="resume[home_address]">
+					<input placeholder='Home address, Apartment suite, unit, building, floor, ect.' class='span6' type='text' name='resume[home_address]'>
 				</div>
 			</div>	
 
 			<div class='control-group'>
 				<label class='control-label'>City: </label>
 				<div class='controls'>
-					<input type="text" name="resume[city]">
+					<input type='text' name='resume[city]'>
 				</div>
 			</div>	
 
 			<div class='control-group'>
 				<label class='control-label'>State: </label>
 				<div class='controls'>
-					<input type="text" name="resume[state]">
+					<input type='text' name='resume[state]'>
 				</div>
 			</div>	
 
 			<div class='control-group'>
 				<label class='control-label'>Zip Code: </label>
 				<div class='controls'>
-					<input type="text" name="resume[zip_code]">
+					<input type='text' name='resume[zip_code]'>
 				</div>
 			</div>
 
 			<div class='control-group'>
 				<label class='control-label'>Telephone Number: </label>
 				<div class='controls'>
-					<input placeholder='Enter number without spaces' type="text" name="resume[telephone_number]">
+					<input placeholder='Enter number without spaces' type='text' name='resume[telephone_number]'>
 				</div>
 			</div>
 		</div>
@@ -94,93 +92,100 @@
 			<div class='control-group'>
 				<label class='control-label'>School's name: </label>
 				<div class='controls'>
-					<input type="text" name="resume[school]">
+					<input type='text' name='resume.education[school]'>
 				</div>	
 			</div>
 
-			<div class="control-group">
+			<div class='control-group'>
 				<label class='control-label'>City: </label>
 				<div class='controls'>
-					<input type="text" name="resume[school_city]">
+					<input type='text' name='resume[school_city]'>
 				</div>
 			</div>
 
-			<div class="control-group">
+			<div class='control-group'>
 				<label class='control-label'>State: </label>
 				<div class='controls'>
-					<input type="text" name="resume[school_state]">
+					<input type='text' name='resume[school_state]'>
 				</div>
 			</div>	
 
-			<div class="control-group">
+			<div class='control-group'>
 				<label class='control-label'>Degree: </label>
 				<div class='controls'>
-					<input  type="text" name="resume[degree]">
+					<input  type='text' name='resume[degree]'>
 				</div>
 			</div>
 
-			<div class="control-group">
+			<div class='control-group'>
 				<label class='control-label'>Graduation Date: </label>
 				<div class='controls'>
-					<input type="text" name="resume[graduation_date]">
+					<input type='text' name='resumegraduation_date]'>
 				</div>
 			</div>	
 
 			<div class='control-group'>
 				<label class='control-label'>Major: </label>
 				<div class='controls'>
-					<input type="text" name="resume[major]">
-				</div>
-			</div>
-
-			<div class="control-group">
-				<label class='control-label'>GPA: </label>
-				<div class='controls'>
-					<input type="text" name="resume[gpa]">
+					<input type='text' name='resume[major]'>
 				</div>
 			</div>
 
 			<div class='control-group'>
-				<label class='control-label'>Company's Name: </label>
+				<label class='control-label'>GPA: </label>
 				<div class='controls'>
-					<input type="text" name="resume[company_name]">
+					<input type='text' name='resume[gpa]'>
 				</div>
+			</div>
+			<div id='addSchool'></div>
+			<div class='btn' id='addSchoolbtn'>
+				Add another school
 			</div>
 		</div>	
 
 
 		<div class='well well-small resume-form'>
 			<p>Job Experience</p>
-			<div class="control-group">
-				<label class='control-label'>Position: </label>
-				<div class='controls'>
-					<input type="text" name="resume[position]">
-				</div>
-			</div>		
 
-			<div class="control-group">
-				<!-- make into drop box -->
-				<label class='control-label'>Start date (month/year): </label>
+			<div class='control-group'>
+				<label class='control-label'>Company's Name: </label>
 				<div class='controls'>
-					<input type="text" name="resume[job_start]">
+					<input type='text' name='resume[company_name]'>
 				</div>
 			</div>
 
-			<div class="control-group">
+			<div class='control-group'>
+				<label class='control-label'>Position: </label>
+				<div class='controls'>
+					<input type='text' name='resume[position]'>
+				</div>
+			</div>		
+
+			<div class='control-group'>
+				<!-- make into drop box -->
+				<label class='control-label'>Start date (month/year): </label>
+				<div class='controls'>
+					<input type='text' name='resume[job_start]'>
+				</div>
+			</div>
+
+			<div class='control-group'>
 				<!-- make into drop box -->
 				<label class='control-label'>End date (month/year): </label>
 				<div class='controls'>
-					<input type="text" name="resume[job_end]">
+					<input type='text' name='resume[job_end]'>
 				</div>
 			</div>	
 
-			<div class="control-group">
+			<div class='control-group'>
 				<label class='control-label'>Job experience: </label>
 				<div class='controls'>
-					<!--<input type="textarea" name="resume[job_skills]">-->
-					<textarea rows='10' class='span5' name='resume[job_skills]' placeholder='Max 200 characters'></textarea>
+					<!--<input type='textarea' name='resume[job_skills]'>-->
+					<textarea class='span5' name='resume[job_skills]' placeholder='Max 200 characters. You can drag the bottom left corner to make text box larger.'></textarea>
 				</div>
-			</div>	
+			</div>
+			<div id='addJob'></div>
+			<div class='btn' id='addJobbtn'>Add another job</div>	
 		</div>
 			
 
@@ -189,13 +194,15 @@
 			<div class='control-group'>
 				<label class='control-label'>skills/experience: </label>
 				<div class='controls'>
-					<input type="text" name="resume[skills]">
+					<textarea class='span5' name='resume[skills]' placeholder='Max 200 characters. You can drag the bottom left corner to make text box larger.'></textarea>
 				</div>
 			</div>
+			<div id='addOtherExp'></div>
+			<div id='addOtherExpbtn' class='btn'>Add another skill/experience</div>
 		</div>
 
 		<div id='submit-button-form'>
-			<input class='btn span4' id='submit-button-resume-form' type="submit" value="Submit">	
+			<input class='btn span4' id='submit-button-resume-form' type='submit' value='Submit'>	
 		</div>						
 	</form>
 </div>

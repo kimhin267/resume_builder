@@ -1,10 +1,17 @@
 /*website layout*/
 #layout_body{
-	background-image: url('http://i.poweredtemplates.com/wallpapers/ppt_blue_1024_768.jpg');
-	background-size: 1004px 100%;
+	
+	background-image: url('http://personalinternettraining.com/wp-content/uploads/2011/08/background.jpg');
+	background-size: 1005px 100%;
 	background-repeat: no-repeat;
 	background-position-x: center;
-	background-position-y: 38px;}
+	background-position-y: 38px;
+	/*
+	background: url('http://personalinternettraining.com/wp-content/uploads/2011/08/background.jpg') no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;*/}
 #outer_container{
 	margin-left: auto;
 	margin-right: auto;
@@ -14,9 +21,15 @@
 /*error messages*/
 #sign_up_error{
 	margin-top: 50px;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
 	color: red;}
 #sign_in_error{
 	margin-top: 50px;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
 	color: red;}
 
 
@@ -46,10 +59,12 @@
 #resume-list{
 	list-style-type: none;}
 #center-resume-title{
-	margin-top: 4px;}
+	margin-top: 6px;}
 #resume-list-container{
+	background-color: lightcyan;
 	padding-top: 25px;}
 #resume-container{
+	padding-top: 100px;
 	width: 650px;
 	margin-left: auto;
 	margin-right: auto;}
@@ -72,6 +87,74 @@
 
 
 
+
+
+
+
+/*view resume*/
+#view-resume-container{
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 35px;
+}
+#resume-bottom-border{
+	border-bottom: 2px solid;
+	margin-top: -16px;
+	margin-bottom: -10px;
+}
+#view-resume-name-email{
+	display: inline-block;
+	width: 899px;	
+}
+#view-resume-education-info{
+	margin-bottom: 15px;
+}
+.view-resume-subject{
+	width: 170px;
+}
+.view-resume-subject-info{
+	width: 500px;
+	margin-bottom: 15px;
+}
+.view-resume-space-between-lines{
+	margin-bottom: -10px;
+}
+#view-resume-other-skills{
+	margin-top: 10px;
+}
+
+
+/*color*/
+.lightcyan{
+	background: lightcyan;
+}
+
+
+
+/*quick format*/
+.font-weight-normal{
+	font-weight: normal;
+}
+.bold{
+	font-weight: bold;
+}
+.clear{
+	clear: both;
+}
+.inline-block{
+	display: inline-block;
+}
+.italic{
+	font-style: italic;
+}
+.new-line{
+	margin-bottom: 10px;
+}
+
+
+
+
 #topheader {
 	margin-top: 48px;
 	margin-bottom: 15px;
@@ -85,11 +168,6 @@
 	padding-bottom: 10px;
 	text-align: center;
 	clear: both;}
-
-.bold{
-	font-weight: bold;}
-.inline-block{
-	display: inline-block;}
 #index-hero-unit{
 	width: 750px;
 	margin-right: auto;
@@ -100,6 +178,11 @@ div.error_message{
 	font-weight: bold;}
 div#compTIA_logo{
 	text-align: center;}
+
+
+
+
+
 /*
 
 body{

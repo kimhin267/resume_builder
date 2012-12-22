@@ -26,7 +26,7 @@
 		<div class='well well-small' id='resume-list-container'>
 			<% @resumes.each do |resume| %>
 				<li >
-					<span class='pull-left span4' id='center-resume-title'><%= resume[1] %></span>
+					<h4 class='pull-left span4' id='center-resume-title'><%= resume[1] %></h4>
 					<a class='btn btn-info span2' href="/view_resumes/<%= resume[0] %>">View Resume</a>
 					<form action='/view_resumes/<%= resume[0] %>' method="post">
 						<input name="_method" type='hidden' value='delete'>
