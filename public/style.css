@@ -133,6 +133,9 @@
 
 
 /*quick format*/
+.text-center{
+	text-align: center;
+}
 .font-weight-normal{
 	font-weight: normal;
 }

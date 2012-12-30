@@ -39,9 +39,9 @@ class Resume
 	property :zip_code          , Integer
 	property :telephone_number  , Integer
 
-	has n, :educations
-	has n, :jobs
-	has n, :otherskills
+	has n, :educations, :constraint => :destroy
+	has n, :jobs, :constraint => :destroy
+	has n, :otherskills, :constraint => :destroy
 	belongs_to :user
 end
 
@@ -153,16 +153,13 @@ get '/my_resumes' do
 	if session['user'].nil?
 		redirect to URI.parse(URI.encode('/signin_page?need_login=Must sign in to view resumes!'))
 	end
+	@user = User.first(:email_address => session['user'])
+	@resumes = @user.resumes
+	#puts @resumes.length
+	#@resumes.each do |i|
+	#	puts i.title
+	#end
 
-	begin
-		db = SQLite3::Database.open 'resume_builder.db'
-		@resumes = db.execute "SELECT id, Title FROM Resume WHERE Resume.User = '#{session['user']}'"
-	rescue Exception => e
-		puts "Exception occured"
-		puts e
-	ensure
-		db.close if db
-	end
 	return erb :my_resumes
 end
 
@@ -173,30 +170,17 @@ end
 
 
 get '/view_resumes/:id' do
-	begin
-		db = SQLite3::Database.open 'resume_builder.db'
-		@resumes = db.execute "SELECT Resume.* FROM Resume WHERE Resume.id = '#{params[:id]}'"
-	rescue Exception => e
-		puts "Exception occured"
-		puts e
-	ensure
-		db.close if db
-	end
-	@resume = @resumes[0]
+	@user = User.first(:email_address => session['user'])
+	@resumes = @user.resumes[params[:id].to_i]
+	#puts @resumes
 	return erb :my_resume
 end
 
 
 delete '/view_resumes/:id' do
-	begin
-		db = SQLite3::Database.open 'resume_builder.db'
-		@delete_resume = db.execute "DELETE FROM Resume WHERE Resume.id ='#{params[:id]}'" 
-	rescue Exception => e
-		puts 'Exception occured'
-		puts e
-	ensure
-		db.close if db
-	end
+	@user = User.first(:email_address => session['user'])
+	@resumes = @user.resumes[params[:id].to_i].destroy
+	#puts @resumes
 	redirect to ('/my_resumes')
 end
 
@@ -238,7 +222,13 @@ post '/create_resume' do
 		@otherskill.save
 	end
 
-puts @user.resumes	
+puts "length #{@user.resumes.length}"
+
+
+@user.resumes.each do |resume|
+	puts resume.title
+end
+
 #puts @resume.educations.count
 #@resume.educations.each do |i|
 #	puts i
@@ -253,6 +243,10 @@ puts @user.resumes
 	#@otherskill.save
 	return erb :resume_output
 	
+end
+
+get '/about' do
+	return erb :about
 end
 
 not_found do

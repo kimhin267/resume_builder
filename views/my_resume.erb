@@ -25,57 +25,13 @@
 <div class='well well-small' id='view-resume-container'>
 
 	<div id='view-resume-name-email'>
-		<h5 class='pull-left font-weight-normal' id="name"><%= @resume[3] + ' ' + @resume[4] %></h5> <h5 class='pull-right font-weight-normal' id="email"><%= @resume[5] %></h5>	
+		<h5 class='pull-left font-weight-normal' id="name"><%= @resumes.first_name + ' ' + @resumes.last_name %></h5> <h5 class='pull-right font-weight-normal' id="email"><%= @resumes.email_address %></h5>	
 	</div>
 
 	<div id="resume-bottom-border"></div>
 
 	<div>
-		<h5 class='font-weight-normal'><%= @resume[6] + ' | ' + @resume[7] + ' | ' + @resume[8] + ' | ' + @resume[9].to_s + ' | Telephone number: ' + @resume[10].to_s %></h5>
+		<h5 class='font-weight-normal'><%= @resumes.home_address + ' | ' + @resumes.city + ' | ' + @resumes.state + ' | ' + @resumes.zip_code.to_s + ' | Telephone number: ' + @resumes.telephone_number.to_s %></h5>
 	</div>
 		
-	<div>
-		<div class='pull-left view-resume-subject'>
-			<h5 class='font-weight-normal'>Education:</h5>
-		</div>
-
-		<div class='pull-left' id='view-resume-education-info'>
-			<h5 class='view-resume-space-between-lines'><%= @resume[11] + ', ' + @resume[12] + ', ' + @resume[13] %></h5>
-			<h5 class='italic view-resume-space-between-lines'><%= @resume[14] + ', Graduation date: ' + @resume[15] %></h5>
-			<h5 class='italic view-resume-space-between-lines'>Major: <%= @resume[16] %></h5>
-			<h5 class='view-resume-space-between-lines'>GPA: <%= @resume[17] %></h5>
-	 	</div>
-	</div>
-
-	
-
-
-	<div class='clear'>
-		<div class='pull-left view-resume-subject'>
-			<h5 class='font-weight-normal'>Experience:</h5>
-		</div>
-
-		<div class='pull-left view-resume-subject-info'>
-			<h5 class='view-resume-space-between-lines'><%= @resume[18] %></h5>
-			<h5 class='italic view-resume-space-between-lines'><%= @resume[19] %></h5>
-			<ul class='view-resume-space-between-lines'>
-				<li><h5 class='font-weight-normal'><%= @resume[20] %></h5></li>
-	 		</ul>
-	 	</div>
-		<div class='pull-right'>
-			<h5 class='font-weight-normal'><%= @resume[21] + ' - ' + @resume[22] %></h5>
-		</div>
-	</div>
-		
-	<div class='clear'>
-		<div class='pull-left view-resume-subject'>
-			<h5 class='font-weight-normal'>Other experience/skills:</h5>
-		</div>
-		<div class='pull-left view-resume-subject-info'>
-			<ul class='view-resume-space-between-lines' id='view-resume-other-skills'>
-				<li><%= @resume[23]%></li>
-			</ul>
-		</div>
-	</div>
-	<div class='clear'></div>
 </div>

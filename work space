@@ -59,3 +59,54 @@ First_name, Last_name, Email, Home_address, City, State,
 first_name, last_name, email_address, home_address, city, state, zip_code, telephone_number, 
 				school, school_city, school_state, degree, graduation_date, major, gpa, company_name, 
 				position, job_skills, job_start, job_end, skills
+
+
+
+
+
+
+
+<div>
+		<div class='pull-left view-resume-subject'>
+			<h5 class='font-weight-normal'>Education:</h5>
+		</div>
+
+		<div class='pull-left' id='view-resume-education-info'>
+			<h5 class='view-resume-space-between-lines'><%= @resume[11] + ', ' + @resume[12] + ', ' + @resume[13] %></h5>
+			<h5 class='italic view-resume-space-between-lines'><%= @resume[14] + ', Graduation date: ' + @resume[15] %></h5>
+			<h5 class='italic view-resume-space-between-lines'>Major: <%= @resume[16] %></h5>
+			<h5 class='view-resume-space-between-lines'>GPA: <%= @resume[17] %></h5>
+	 	</div>
+	</div>
+
+	
+
+
+	<div class='clear'>
+		<div class='pull-left view-resume-subject'>
+			<h5 class='font-weight-normal'>Experience:</h5>
+		</div>
+
+		<div class='pull-left view-resume-subject-info'>
+			<h5 class='view-resume-space-between-lines'><%= @resume[18] %></h5>
+			<h5 class='italic view-resume-space-between-lines'><%= @resume[19] %></h5>
+			<ul class='view-resume-space-between-lines'>
+				<li><h5 class='font-weight-normal'><%= @resume[20] %></h5></li>
+	 		</ul>
+	 	</div>
+		<div class='pull-right'>
+			<h5 class='font-weight-normal'><%= @resume[21] + ' - ' + @resume[22] %></h5>
+		</div>
+	</div>
+		
+	<div class='clear'>
+		<div class='pull-left view-resume-subject'>
+			<h5 class='font-weight-normal'>Other experience/skills:</h5>
+		</div>
+		<div class='pull-left view-resume-subject-info'>
+			<ul class='view-resume-space-between-lines' id='view-resume-other-skills'>
+				<li><%= @resume[23]%></li>
+			</ul>
+		</div>
+	</div>
+	<div class='clear'></div>
