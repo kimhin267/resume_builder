@@ -38,7 +38,6 @@ class Resume
 	property :state             , String
 	property :zip_code          , Integer
 	property :telephone_number  , Integer
-	property :Otherskill, String
 
 	has n, :educations
 	has n, :jobs
@@ -221,62 +220,39 @@ post '/create_resume' do
 	#DataMapper::Model.raise_on_save_failure = true
 	@user = User.first(:email_address => session['user'])
 	@resume = @user.resumes.new(params[:resume])
-	@education = @resume.educations.new(params[:education])
-	@job = @resume.jobs.new(params[:job])
-	@otherskill = @resume.otherskills.new(params[:otherskill])
-	#newResume.user = session['user']
-=begin
-	for education in params[:education] do
-		education = Education.new(:education)
-
-	end
-=end
-	puts @user
-	@resume.save
-	@education.save
-	@job.save
-	@otherskill.save
-=begin
-	education.school = @resume['school']
-	education.school_city = @resume['school_city']
-	education.school_state = @resume['school_state']
-	education.degree = @resume['degree']
-	education.graduation_date = @resume['graduation_date']
-	education.major = @resume['major']
-	education.gpa = @resume['gpa']
-
-	job.company_name = @resume['company_name']
-	job.position = @resume['position'] 
-	job.job_skills = @resume['job_skills']
-	job.job_start = @resume['job_start']
-	job.job_end = @resume['job_end'] 
-
-	otherskill.skills = @resume['skills']
-=end	
 	
-	 	
-
-=begin
-	begin
-		db = SQLite3::Database.open "resume_builder.db"
-
-		stm = db.prepare "INSERT INTO Resume(User, Title, First_name, Last_name, Email, Home_address, City, State, 
-				Zip_code, Telephone_number, School, School_city, School_state, Degree, Graduation_date, Major, 
-				GPA, Company_name, Position, Job_skills, Job_start, Job_end, Skills)
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-		stm.bind_params session['user'], title, first_name, last_name, email_address, home_address, city, state, zip_code, 
-				telephone_number, school, school_city, school_state, degree, graduation_date, major, gpa, 
-				company_name, position, job_skills, job_start, job_end, skills
-		stm.execute
-
-	rescue Exception => e
-		puts 'Exception occured'
-		puts e
-	ensure
-		stm.close if stm
-		db.close if db
+	@resume.save
+	params[:education].each_key do |school|
+		@school = @resume.educations.new(params[:education][school])
+		@school.save
+		#puts school.inspect
 	end
-=end
+
+	params[:job].each_key do |job|
+		@job = @resume.jobs.new(params[:job][job])
+		@job.save
+	end
+
+	params[:otherskill].each_key do |other|
+		@otherskill = @resume.otherskills.new(params[:otherskill][other])
+		@otherskill.save
+	end
+
+puts @user.resumes	
+#puts @resume.educations.count
+#@resume.educations.each do |i|
+#	puts i
+#end
+#@school.each do |i|
+#	puts i
+#end
+#puts @school.school
+	#@job = @resume.jobs.new(params[:job])
+	#@otherskill = @resume.otherskills.new(params[:otherskill])
+	#@job.save
+	#@otherskill.save
+	return erb :resume_output
+	
 end
 
 not_found do
@@ -572,5 +548,22 @@ post '/signin' do
 	ensure
 		db.close if db
 	end
+end
+
+get '/my_resumes' do
+	if session['user'].nil?
+		redirect to URI.parse(URI.encode('/signin_page?need_login=Must sign in to view resumes!'))
+	end
+
+	begin
+		db = SQLite3::Database.open 'resume_builder.db'
+		@resumes = db.execute "SELECT id, Title FROM Resume WHERE Resume.User = '#{session['user']}'"
+	rescue Exception => e
+		puts "Exception occured"
+		puts e
+	ensure
+		db.close if db
+	end
+	return erb :my_resumes
 end
 =end
