@@ -171,8 +171,7 @@ end
 
 get '/view_resumes/:id' do
 	@user = User.first(:email_address => session['user'])
-	@resumes = @user.resumes[params[:id].to_i]
-	@school = @resumes.educations
+	@resumes = @user.resumes.first(params[:id])
 	#puts @school
 	return erb :my_resume
 end
@@ -180,7 +179,7 @@ end
 
 delete '/view_resumes/:id' do
 	@user = User.first(:email_address => session['user'])
-	@resumes = @user.resumes[params[:id].to_i].destroy
+	@resumes = @user.resumes.first(params[:id]).destroy
 	#puts @resumes
 	redirect to ('/my_resumes')
 end
