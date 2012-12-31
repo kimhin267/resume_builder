@@ -66,7 +66,7 @@ first_name, last_name, email_address, home_address, city, state, zip_code, telep
 
 
 
-<div>
+	<div>
 		<div class='pull-left view-resume-subject'>
 			<h5 class='font-weight-normal'>Education:</h5>
 		</div>

@@ -172,7 +172,8 @@ end
 get '/view_resumes/:id' do
 	@user = User.first(:email_address => session['user'])
 	@resumes = @user.resumes[params[:id].to_i]
-	#puts @resumes
+	@school = @resumes.educations
+	#puts @school
 	return erb :my_resume
 end
 
@@ -222,12 +223,11 @@ post '/create_resume' do
 		@otherskill.save
 	end
 
-puts "length #{@user.resumes.length}"
-
-
-@user.resumes.each do |resume|
-	puts resume.title
-end
+	return erb :resume_output
+#puts "length #{@user.resumes.length}"
+#@user.resumes.each do |resume|
+#	puts resume.title
+#end
 
 #puts @resume.educations.count
 #@resume.educations.each do |i|
@@ -237,12 +237,6 @@ end
 #	puts i
 #end
 #puts @school.school
-	#@job = @resume.jobs.new(params[:job])
-	#@otherskill = @resume.otherskills.new(params[:otherskill])
-	#@job.save
-	#@otherskill.save
-	return erb :resume_output
-	
 end
 
 get '/about' do

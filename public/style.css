@@ -88,9 +88,6 @@
 
 
 
-
-
-
 /*view resume*/
 #view-resume-container{
 	width: 900px;
@@ -123,6 +120,17 @@
 #view-resume-other-skills{
 	margin-top: 10px;
 }
+
+
+
+/*my_resumes/my_resume*/
+#spacing-company-name{
+	margin-bottom: 0px;
+}
+.my-resume-container{
+	width: 500px;
+}
+
 
 
 /*color*/
