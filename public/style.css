@@ -24,13 +24,19 @@
 	text-align: center;
 	margin-right: auto;
 	margin-left: auto;
-	color: red;}
+	color: red;
+}
 #sign_in_error{
 	margin-top: 50px;
 	text-align: center;
 	margin-right: auto;
 	margin-left: auto;
-	color: red;}
+	color: red;
+}
+.error_message{
+	color: red;
+	font-weight: bold;
+}
 
 
 /*forms*/
@@ -88,7 +94,7 @@
 
 
 
-/*view resume*/
+/*view resume page*/
 #view-resume-container{
 	width: 900px;
 	margin-left: auto;
@@ -123,12 +129,18 @@
 
 
 
-/*my_resumes/my_resume*/
+/*my resumes and my resume page*/
 #spacing-company-name{
 	margin-bottom: 0px;
 }
 .my-resume-container{
 	width: 500px;
+}
+
+
+/*create resume page*/
+#create-resume-error{
+	padding-bottom: 25px;
 }
 
 
@@ -162,7 +174,9 @@
 .new-line{
 	margin-bottom: 10px;
 }
-
+.no-bullet-point{
+	list-style-type: none;
+}
 
 
 
@@ -184,9 +198,6 @@
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 60px;}
-div.error_message{
-	color: red;
-	font-weight: bold;}
 div#compTIA_logo{
 	text-align: center;}
 

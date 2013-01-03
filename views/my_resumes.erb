@@ -28,7 +28,6 @@
 				<h1 class="text-center"><%= "No resume." %></h1>
 			<%end%>
 			<% @resumes.each do |resume| %>
-			<%= resume.id %>
 				<li >
 					<h4 class='pull-left span4' id='center-resume-title'><%= resume.title %></h4>
 					<a class='btn btn-info span2' href="/view_resumes/<%= resume.id %>">View Resume</a>

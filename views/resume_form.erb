@@ -23,8 +23,17 @@
 
 
 
+
 <div>
 	<form class='form-horizontal' name='resume_builder' action='/create_resume' method='post'>
+		<% if session[:errors].empty? === false %>
+			<div class='well well-small resume-form' id='create-resume-error'>
+				<% session[:errors].each do |error| %>
+					<li class="error_message no-bullet-point"><%= "! " + error %></li>
+				<%end%>
+			</div>
+		<%end%>
+
 		<div class='well well-small resume-form'>	
 			<div class='control-group'>
 				<label id='form-page-title' class='control-label'>Title: </label>

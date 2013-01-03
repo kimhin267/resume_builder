@@ -22,12 +22,13 @@
 </div>
 
 <div id='sign_up_error'>
-	<%if params[:email_taken_error] or params[:empty_signup_field] or params[:not_email]%>
+	<%if params[:email_taken_error] or params[:empty_signup_field] or params[:not_email] or params[:password_error] %>
 		<span class='alert alert-error bold'>	
 			<%='* '%>
 			<%= params[:email_taken_error] %>
 			<%= params[:empty_signup_field] %>
 			<%= params[:not_email] %>
+			<%= params[:password_error] %>
 		</span>
 	<%end%>
 	<div><br></div>
@@ -47,10 +48,15 @@
 						</div>
 					</div>
 
+
 					<div class='control-group'>
 						<label class='control-label'>Password: </label>
 						<div class='controls'>
 							<input placeholder='Password' type="password" name="sign_up[password]" /> 
+						</div>
+
+						<div class='error_message text-center'>
+							<h6>**Password requirement: 8 or more characters** </h5>
 						</div>
 					</div>
 					
