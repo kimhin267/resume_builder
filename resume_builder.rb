@@ -202,6 +202,7 @@ get '/create_resume' do
 	if session['user'].nil?
 		redirect to URI.parse(URI.encode('/signin_page?need_login=Must sign in to access Resume Builder!'))
 	end
+	session[:errors] = []
 	session[:errors].clear
 	return erb :resume_form
 end
@@ -212,15 +213,15 @@ post '/create_resume' do
 	#DataMapper::Model.raise_on_save_failure = true
 	@user = User.first(:email_address => session['user'])
 	@resume = @user.resumes.new(params[:resume])
-	session[:errors]= []
 	@resume.save
+	session[:errors].clear
 	@resume.errors.each do |error|
  		error.each do |e|
  			if e == "Resume must not be blank"
  			elsif e === "Zip code must be an integer"
 				session[:errors] << "Please enter a valid zip code"
 			elsif e === "Telephone number must be an integer"
-				session[:errors] << "Please make sure the telephone number does not have any hyphens or spaces"		
+				session[:errors] << "Please make sure that telephone number does not have any hyphens or spaces"		
  			else
 				session[:errors] << e
 			end
@@ -263,7 +264,6 @@ puts @resume.educations.length
 	if session[:errors].empty? === false
 		erb :resume_form
 	else
-		session[:errors].clear
 		erb :resume_output 
 		
 	end
