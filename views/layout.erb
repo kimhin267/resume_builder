@@ -11,15 +11,14 @@
 
 	<body id='layout_body'>
 		<div id="outer_container">
-			<%= yield %>
-
-			
-
-			<div id="footer">
-				<div id='footer_link'>
-					<a href="/about">About</a>
-					<p>Copyright Kim Hin 2012</p>
-				</div>
+			<div id="content">
+				<%= yield %>
+				
+				
+			</div>
+			<div id='footer_link'>
+				<a class='white' href="/about">About</a>
+				<p>Copyright Kim Hin 2012</p>
 			</div>
 		</div>
 	</body>

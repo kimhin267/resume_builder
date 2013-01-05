@@ -26,6 +26,8 @@
 
 <div>
 	<form class='form-horizontal' id="validation" name='resume_builder' action='/create_resume' method='post'>
+		<div id="front_end_error-form">	
+		</div>
 		<% if session[:errors].empty? === false %>
 			<div class='well well-small resume-form' id='create-resume-error'>
 				<% session[:errors].each do |error| %>
@@ -38,7 +40,7 @@
 			<div class='control-group'>
 				<label id='form-page-title' class='control-label'>Title: </label>
 				<div class='controls' id='form-page-input-title'>
-					<input class='span4 required' id="summary" placeholder='Max 35 characters'  type='text' name='resume[title]'>
+					<input class='span4 required' placeholder='Max 35 characters'  type='text' name='resume[title]'>
 				</div>
 			</div>
 		</div>
@@ -48,50 +50,50 @@
 			<div class='control-group'>
 				<label class='control-label'>Name: </label>
 				<div class='controls'>
-					<input class='span4 required' placeholder='First' type='text' name='resume[first_name]' />
-					<input class='span4' placeholder='Last' type='text' name='resume[last_name]' />
+					<input class='span4 required' placeholder='First' type='text' name='resume[first_name]' /><br/><br/>
+					<input class='span4 required' placeholder='Last' type='text' name='resume[last_name]' />
 				</div>
 			</div>
 
 			<div class='control-group'>
 				<label class='control-label'>Email Address: </label>
 				<div class='controls'>
-					<input class='span6' placeholder='Example@BR.com' type='text' name='resume[email_address]' />
+					<input class='span6 required' placeholder='Example@BR.com' type='text' name='resume[email_address]' />
 				</div>
 			</div>
 
 			<div class='control-group'>
 				<label class='control-label'>Home Address: </label>
 				<div class='controls'>
-					<input placeholder='Home address, Apartment suite, unit, building, floor, ect.' class='span6' type='text' name='resume[home_address]'>
+					<input placeholder='Home address, Apartment suite, unit, building, floor, ect.' class='span6 required' type='text' name='resume[home_address]'>
 				</div>
 			</div>	
 
 			<div class='control-group'>
 				<label class='control-label'>City: </label>
 				<div class='controls'>
-					<input type='text' name='resume[city]'>
+					<input class="required" type='text' name='resume[city]'>
 				</div>
 			</div>	
 
 			<div class='control-group'>
 				<label class='control-label'>State: </label>
 				<div class='controls'>
-					<input type='text' name='resume[state]'>
+					<input class="required" type='text' name='resume[state]'>
 				</div>
 			</div>	
 
 			<div class='control-group'>
 				<label class='control-label'>Zip Code: </label>
 				<div class='controls'>
-					<input type='text' name='resume[zip_code]'>
+					<input class="required" type='text' name='resume[zip_code]'>
 				</div>
 			</div>
 
 			<div class='control-group'>
 				<label class='control-label'>Telephone Number: </label>
 				<div class='controls'>
-					<input placeholder='Enter number without spaces' type='text' name='resume[telephone_number]'>
+					<input class="required" placeholder='Enter number without spaces' type='text' name='resume[telephone_number]'>
 				</div>
 			</div>
 		</div>
@@ -101,49 +103,49 @@
 			<div class='control-group'>
 				<label class='control-label'>School's name: </label>
 				<div class='controls'>
-					<input type='text' name='education[0][school]'>
+					<input class="required" type='text' name='education[0][school]'>
 				</div>	
 			</div>
 
 			<div class='control-group'>
 				<label class='control-label'>City: </label>
 				<div class='controls'>
-					<input type='text' name='education[0][school_city]'>
+					<input class="required" type='text' name='education[0][school_city]'>
 				</div>
 			</div>
 
 			<div class='control-group'>
 				<label class='control-label'>State: </label>
 				<div class='controls'>
-					<input type='text' name='education[0][school_state]'>
+					<input class="required" type='text' name='education[0][school_state]'>
 				</div>
 			</div>	
 
 			<div class='control-group'>
 				<label class='control-label'>Degree: </label>
 				<div class='controls'>
-					<input  type='text' name='education[0][degree]'>
+					<input  class="required" type='text' name='education[0][degree]'>
 				</div>
 			</div>
 
 			<div class='control-group'>
 				<label class='control-label'>Graduation Date: </label>
 				<div class='controls'>
-					<input type='text' name='education[0][graduation_date]'>
+					<input class="required" type='text' name='education[0][graduation_date]'>
 				</div>
 			</div>	
 
 			<div class='control-group'>
 				<label class='control-label'>Major: </label>
 				<div class='controls'>
-					<input type='text' name='education[0][major]'>
+					<input class="required" type='text' name='education[0][major]'>
 				</div>
 			</div>
 
 			<div class='control-group'>
 				<label class='control-label'>GPA: </label>
 				<div class='controls'>
-					<input type='text' name='education[0][gpa]'>
+					<input class="required" type='text' name='education[0][gpa]'>
 				</div>
 			</div>
 			<div id='addSchool'></div>
@@ -159,14 +161,14 @@
 			<div class='control-group'>
 				<label class='control-label'>Company's Name: </label>
 				<div class='controls'>
-					<input type='text' name='job[0][company_name]'>
+					<input class="required" type='text' name='job[0][company_name]'>
 				</div>
 			</div>
 
 			<div class='control-group'>
 				<label class='control-label'>Position: </label>
 				<div class='controls'>
-					<input type='text' name='job[0][position]'>
+					<input class="required" type='text' name='job[0][position]'>
 				</div>
 			</div>		
 
@@ -174,7 +176,7 @@
 				<!-- make into drop box -->
 				<label class='control-label'>Start date (month/year): </label>
 				<div class='controls'>
-					<input type='text' name='job[0][job_start]'>
+					<input class="required" type='text' name='job[0][job_start]'>
 				</div>
 			</div>
 
@@ -182,7 +184,7 @@
 				<!-- make into drop box -->
 				<label class='control-label'>End date (month/year): </label>
 				<div class='controls'>
-					<input type='text' name='job[0][job_end]'>
+					<input class="required" type='text' name='job[0][job_end]'>
 				</div>
 			</div>	
 
@@ -190,7 +192,7 @@
 				<label class='control-label'>Job experience: </label>
 				<div class='controls'>
 					<!--<input type='textarea' name='resume[job_skills]'>-->
-					<textarea class='span5' name='job[0][job_skills]' placeholder='Max 200 characters. You can drag the bottom left corner to make text box larger.'></textarea>
+					<textarea class='span5 required' name='job[0][job_skills]' placeholder='Max 200 characters. You can drag the bottom left corner to make text box larger.'></textarea>
 				</div>.
 			</div>
 			<div id='addJob'></div>

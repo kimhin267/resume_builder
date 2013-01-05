@@ -5,12 +5,12 @@
 		<li><a href="/my_resumes">View Resumes</a></li>
 		<li>
 			<% if session['user'].nil? %>
-			<a href="/signin_page">Signin</a>
+			<a href="/signin_page">Sign in</a>
 			<%end%>
 		</li>
 		<li class='active'>
 			<% if session['user'].nil? %>
-			<a href="">Signup</a>
+			<a href="">Sign up</a>
 			<%end%>
 		</li>
 		<li>
@@ -21,7 +21,7 @@
 	</ul>
 </div>
 
-<div id='sign_up_error'>
+<div class='error-form'>
 	<%if params[:email_taken_error] or params[:empty_signup_field] or params[:not_email] or params[:password_error] %>
 		<span class='alert alert-error bold'>	
 			<%='* '%>

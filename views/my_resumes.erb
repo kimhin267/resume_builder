@@ -5,12 +5,12 @@
 		<li class='active'><a href="/my_resumes">View Resumes</a></li>
 		<li>
 			<% if session['user'].nil? %>
-			<a href="/signin_page">Signin</a>
+			<a href="/signin_page">Sign in</a>
 			<%end%>
 		</li>
 		<li>
 			<% if session['user'].nil? %>
-			<a href="/signup_page">Signup</a>
+			<a href="/signup_page">Sign up</a>
 			<%end%>
 		</li>
 		<li>

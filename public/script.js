@@ -6,12 +6,21 @@ $(document).ready(function(){
 
 	$('#submit-button-resume-form').click(function() {
 		var validator = $("#validation").validate({
+			highlight: function(label) {
+			    $(label).closest('.control-group').addClass('error');
+			},
+			unhighlight: function(label) {
+			     $(label).closest('.control-group').removeClass('error');
+			},
   			invalidHandler: function() {
-    			$("#summary").text(validator.numberOfInvalids() + " field(s) are invalid");
+  				$("#front_end_error-form").append("<div class='error_message well well-small resume-form'\
+  				 id='front_end_error'></div>");
+    			$("#front_end_error").text("Your form contains " + validator.numberOfInvalids() + " invalid field(s),\
+    			see highlighted fields.");
+    			
     			return false;
-    			}
-			});
-		
+    		}
+		});
 	});
 
 	

@@ -1,200 +1,380 @@
-		if (@resume.raise_on_save_failure or @school.raise_on_save_failure or @job.raise_on_save_failure) === true
-		erb :resume_form
-
-		<% if @resume.errors.on(:first_name).empty? === false %>
-						<input class='span4 asdf' placeholder='First' type='text' name='resume[first_name]' />
-						<input class='span4' placeholder='Last' type='text' name='resume[last_name]' />
-					<% else %>
-						<input class='span4 ' placeholder='First' type='text' name='resume[first_name]' />
-						<input class='span4' placeholder='Last' type='text' name='resume[last_name]' />
-					<%end%>
-
-<% @i = 9 %>
-			<% @current = 9 %>
-			<% (9..session[:resume_output].length).each do |e| %>
-				<% if e < @resume.educations.length*7+i %>
-
-
-
-<%else%>
-		<form class='form-horizontal' name='resume_builder' action='/create_resume' method='post'>
-			<div class='well well-small resume-form'>	
-				<div class='control-group'>
-					<label id='form-page-title' class='control-label'>Title: </label>
-					<div class='controls' id='form-page-input-title'>
-						<input class='span4' placeholder='Max 35 characters'  type='text' name='resume[title]'>
-					</div>
-				</div>
-			</div>
-			<div class='well well-small resume-form'>
-				<p>Personal Information</p>
-				<div class='control-group'>
-					<label class='control-label'>Name: </label>
-					<div class='controls'>
-						<input class='span4' placeholder='First' type='text' name='resume[first_name]' />
-						<input class='span4' placeholder='Last' type='text' name='resume[last_name]' />
-					</div>
-				</div>
-
-				<div class='control-group'>
-					<label class='control-label'>Email Address: </label>
-					<div class='controls'>
-						<input class='span6' placeholder='Example@BR.com' type='text' name='resume[email_address]' />
-					</div>
-				</div>
-
-				<div class='control-group'>
-					<label class='control-label'>Home Address: </label>
-					<div class='controls'>
-						<input placeholder='Home address, Apartment suite, unit, building, floor, ect.' class='span6' type='text' name='resume[home_address]'>
-					</div>
-				</div>	
-
-				<div class='control-group'>
-					<label class='control-label'>City: </label>
-					<div class='controls'>
-						<input type='text' name='resume[city]'>
-					</div>
-				</div>	
-
-				<div class='control-group'>
-					<label class='control-label'>State: </label>
-					<div class='controls'>
-						<input type='text' name='resume[state]'>
-					</div>
-				</div>	
-
-				<div class='control-group'>
-					<label class='control-label'>Zip Code: </label>
-					<div class='controls'>
-						<input type='text' name='resume[zip_code]'>
-					</div>
-				</div>
-
-				<div class='control-group'>
-					<label class='control-label'>Telephone Number: </label>
-					<div class='controls'>
-						<input placeholder='Enter number without spaces' type='text' name='resume[telephone_number]'>
-					</div>
-				</div>
-			</div>
-
-			<div class='well well-small resume-form'>
-				<p>Education</p>
-				<div class='control-group'>
-					<label class='control-label'>School's name: </label>
-					<div class='controls'>
-						<input type='text' name='education[0][school]'>
-					</div>	
-				</div>
-
-				<div class='control-group'>
-					<label class='control-label'>City: </label>
-					<div class='controls'>
-						<input type='text' name='education[0][school_city]'>
-					</div>
-				</div>
-
-				<div class='control-group'>
-					<label class='control-label'>State: </label>
-					<div class='controls'>
-						<input type='text' name='education[0][school_state]'>
-					</div>
-				</div>	
-
-				<div class='control-group'>
-					<label class='control-label'>Degree: </label>
-					<div class='controls'>
-						<input  type='text' name='education[0][degree]'>
-					</div>
-				</div>
-
-				<div class='control-group'>
-					<label class='control-label'>Graduation Date: </label>
-					<div class='controls'>
-						<input type='text' name='education[0][graduation_date]'>
-					</div>
-				</div>	
-
-				<div class='control-group'>
-					<label class='control-label'>Major: </label>
-					<div class='controls'>
-						<input type='text' name='education[0][major]'>
-					</div>
-				</div>
-
-				<div class='control-group'>
-					<label class='control-label'>GPA: </label>
-					<div class='controls'>
-						<input type='text' name='education[0][gpa]'>
-					</div>
-				</div>
-				<div id='addSchool'></div>
-				<div class='btn' id='addSchoolbtn'>
-					Add another school
-				</div>
-			</div>	
+/*website layout*/
+html,
+body {
+   height: 100%;
+}
+#layout_body{
+	background-image: url('http://personalinternettraining.com/wp-content/uploads/2011/08/background.jpg');
+	background-size: 1005px;
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position-y: 38px;
+	/*
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;*/}
+#outer_container{
+	margin-left: auto;
+	margin-right: auto;
+	width: 1004px;
+	min-height:100%;
+	position:relative;
+}
+#content {
+	padding-bottom:80px;   /* Height of the footer element */
+}
 
 
-			<div class='well well-small resume-form'>
-				<p>Job Experience</p>
+/*error messages*/
+.error-form{
+	margin-top: 50px;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	color: red;
+	width: 420px;
+}
+.error_message{
+	color: red;
+	font-weight: bold;
+}
 
-				<div class='control-group'>
-					<label class='control-label'>Company's Name: </label>
-					<div class='controls'>
-						<input type='text' name='job[0][company_name]'>
-					</div>
-				</div>
 
-				<div class='control-group'>
-					<label class='control-label'>Position: </label>
-					<div class='controls'>
-						<input type='text' name='job[0][position]'>
-					</div>
-				</div>		
+/*forms*/
+#about-form{width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;}
+#signin_form{
+	width: 420px;
+	margin-left: auto;
+	margin-right: auto;}
+#signup_form{
+	width: 420px;
+	margin-left: auto;
+	margin-right: auto;}
+#form-page-title{
+	width: 0px;}
+#form-page-input-title{
+	margin-left: 0px;
+	padding-left: 50px;}
+#signin-btn{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	display: block;
+	float: none;
+}
+#resume-list{
+	list-style-type: none;}
+#center-resume-title{
+	margin-top: 6px;}
+#resume-list-container{
+	background-color: lightcyan;
+	padding-top: 25px;}
+#resume-container{
+	padding-top: 100px;
+	width: 650px;
+	margin-left: auto;
+	margin-right: auto;}
+.resume-form{
+	width: 800px;
+	padding-top: 25px;
+	margin-right: auto;
+	margin-left: auto;
+	background: lightcyan;}
+#submit-button-form{text-align: center;}
+#submit-button-resume-form{padding: 15px 0px;
+	background: lightcyan;}
 
-				<div class='control-group'>
-					<!-- make into drop box -->
-					<label class='control-label'>Start date (month/year): </label>
-					<div class='controls'>
-						<input type='text' name='job[0][job_start]'>
-					</div>
-				</div>
 
-				<div class='control-group'>
-					<!-- make into drop box -->
-					<label class='control-label'>End date (month/year): </label>
-					<div class='controls'>
-						<input type='text' name='job[0][job_end]'>
-					</div>
-				</div>	
+/*nav bar*/
+.nav-bar{position: fixed;}
+.nav-background{background: black;
 
-				<div class='control-group'>
-					<label class='control-label'>Job experience: </label>
-					<div class='controls'>
-						<!--<input type='textarea' name='resume[job_skills]'>-->
-						<textarea class='span5' name='job[0][job_skills]' placeholder='Max 200 characters. You can drag the bottom left corner to make text box larger.'></textarea>
-					</div>
-				</div>
-				<div id='addJob'></div>
-				<div class='btn' id='addJobbtn'>Add another job</div>	
-			</div>
-				
+}
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover{background-color: lightcyan;}
 
-			<div class='well well-small resume-form'>
-				<p>Other skills/experience</p>
-				<div class='control-group'>
-					<label class='control-label'>skills/experience: </label>
-					<div class='controls'>
-						<textarea class='span5' name='otherskill[0][skills]' placeholder='Max 200 characters. You can drag the bottom left corner to make text box larger.'></textarea>
-					</div>
-				</div>
-				<div id='addOtherExp'></div>
-				<div id='addOtherExpbtn' class='btn'>Add another skill/experience</div>
-			</div>
 
-			<div id='submit-button-form'>
-				<input class='btn span4' id='submit-button-resume-form' type='submit' value='Submit'>	
-			</div>						
-		</form>
-	<%end%>
+/*Buttons*/
+
+
+
+
+
+
+/*view resume page*/
+#view-resume-container{
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 35px;
+}
+#resume-bottom-border{
+	border-bottom: 2px solid;
+	margin-top: -16px;
+	margin-bottom: -10px;
+}
+#view-resume-name-email{
+	display: inline-block;
+	width: 899px;	
+}
+#view-resume-education-info{
+	margin-bottom: 15px;
+}
+.view-resume-subject{
+	width: 170px;
+}
+.view-resume-subject-info{
+	width: 500px;
+	margin-bottom: 15px;
+}
+.view-resume-space-between-lines{
+	margin-bottom: -10px;
+}
+#view-resume-other-skills{
+	margin-top: 10px;
+}
+
+
+
+/*my resumes and my resume page*/
+#spacing-company-name{
+	margin-bottom: 0px;
+}
+.my-resume-container{
+	width: 500px;
+}
+
+
+/*create resume page*/
+#create-resume-error{
+	padding-bottom: 25px;
+}
+
+
+
+/*color*/
+.lightcyan{
+	background: lightcyan;
+}
+
+
+
+/*quick format*/
+.text-center{
+	text-align: center;
+}
+.text-center button {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+.font-weight-normal{
+	font-weight: normal;
+}
+.bold{
+	font-weight: bold;
+}
+.clear{
+	clear: both;
+}
+.inline-block{
+	display: inline-block;
+}
+.italic{
+	font-style: italic;
+}
+.new-line{
+	margin-bottom: 10px;
+}
+.no-bullet-point{
+	list-style-type: none;
+}
+
+
+
+#topheader {
+	margin-top: 48px;
+	margin-bottom: 15px;
+	width: 1031px;}
+#footer{
+	width: 1004px;
+	margin-left: auto;
+	margin-right: auto;}
+#footer_link{
+	position:absolute;
+   	bottom:0;
+   	left: 0;
+   	width:100%;
+   	height:80px;   /* Height of the footer */
+   	text-align: center;
+}
+#index-hero-unit{
+	width: 750px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 60px;}
+div#compTIA_logo{
+	text-align: center;}
+
+
+
+
+
+/*
+
+body{
+	background:#FFFFFF;
+	font-family:  arial;
+	font-size: .8em;
+}
+#index_body{
+	background: lightblue;
+}
+#webpage_body{
+	background: lightblue;
+}
+#resume_form_body{
+	background: lightblue;
+}
+#my_resumes_body{
+	background: lightblue;
+}
+#resume_form_area{
+	margin-top: 45px;
+	font-size: 1.3em;
+}
+
+ul.nav li{
+	color:red;
+}
+ul.nav_bar {
+	background: #19252E;
+	position: fixed;
+	top: 7px;
+	width: 100%;
+	height: 35px;
+	z-index: 999;
+	margin-left: -30px;
+	padding-top: 4px;
+	text-align: center;
+	display: inline-block;
+}
+ul.nav_bar li{
+	display:inline-block;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-left: 1px;
+	margin-right:1px;
+}
+
+ul.nav_bar li a{
+	display:inline-block;
+	text-decoration:none;
+	padding:5px;
+	color: white;
+}
+*/
+
+/*
+#webpage_under_construction{
+	font-size: 4em;
+	font-weight: bold;
+	margin-top: 260px;
+	text-align: center;
+}
+#index_h1{
+	margin-top: 45px;
+	font-size: 3em;
+	font-weight: bold;
+}
+*/
+
+/*
+.links {
+	font-size: 1.5em;
+	font-weight: bold;
+	color: red;
+	text-decoration: none;
+}
+/*
+h1 {
+	font-size: 1em;
+	margin-bottom: 10px;
+}
+h2 {
+	font-size: 1em;
+	font-style: italic;
+	margin-top: -9px;
+	font-weight: normal;
+}
+h3{
+	font-size: 1em;
+	font-weight: normal;
+	margin-top: -10px;
+
+div.job {
+	float: left;
+	width: 500px;
+	padding-right: 4px;
+}
+
+div.date {
+	float: right;	
+}
+
+div.resume_row {
+	width: 1031px;
+	min-height: 200px;
+	clear: both;
+	min-height: 50px;
+}
+
+div.experience {
+	width: 100px;
+	float: left;
+	min-height: 87px;
+}
+
+div.resume ul li{
+	text-decoration: none;
+}
+span#name{
+	font-weight: bold;
+}
+span#email{
+	font-weight: bold;
+	float: right;
+}
+*/
+
+/*
+div#right_side_panel{
+	margin-left: 1032px;
+	margin-top: -362px;
+}
+ul.subcategories{
+	margin-top: 0px;
+	margin-bottom: 1px;
+}
+
+a{
+	text-decoration: none;
+	color: blue;
+	font-weight: bold;
+}
+ul {
+	margin-top: -7px;
+}
+
+.nav_bar li:hover{
+   background: red;
+ }
+a:active{
+	color: blue;
+}
+*/
+;

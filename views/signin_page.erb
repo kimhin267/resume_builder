@@ -5,12 +5,12 @@
 		<li><a href="/my_resumes">View Resumes</a></li>
 		<li class='active'>
 			<% if session['user'].nil? %>
-			<a href="">Signin</a>
+			<a href="">Sign in</a>
 			<%end%>
 		</li>
 		<li>
 			<% if session['user'].nil? %>
-			<a href="/signup_page">Signup</a>
+			<a href="/signup_page">Sign up</a>
 			<%end%>
 		</li>
 		<li>
@@ -21,7 +21,7 @@
 	</ul>
 </div>
 
-<div id='sign_in_error'>
+<div class='error-form'>
 	<%if params[:login_error] or params[:need_login] %>
 		<span class='alert alert-error bold'>	
 			<%= '* ' %>
@@ -45,7 +45,7 @@
 	<div>
 		<div class='well well-small lightcyan'>
 			<div>
-				<div>Signin</div><br>
+				<div>Sign in</div><br/>
 			
 				<form class='form-horizontal' action="/signin" method="post">
 					<div class='control-group'>
@@ -62,18 +62,16 @@
 						</div>
 					</div>
 
-					<div class="control-group">
-					   	<div>
-					    	<br><button type="submit" class="btn span5 btn-primary">Signin</button>
-					    </div>
+					<div class='control-group'>
+					    <button type="submit" class="btn span3 btn-primary" id="signin-btn">Sign in</button>
 					</div>
+
+				    <div class="text-center clear">
+				    	<a href="/signup_page">Sign up</a>
+				    </div>
 				</form>
 			</div>
 		</div>
-	</div>
-
-	<div >
-		<a class="btn span5 lightcyan" id="signup_btn" href="/signup_page">Signup</a>	
 	</div>
 </div>
 
