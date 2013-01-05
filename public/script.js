@@ -4,6 +4,18 @@ $(document).ready(function(){
 	var job_count = 0;
 	var other_count = 0;
 
+	$('#submit-button-resume-form').click(function() {
+		var validator = $("#validation").validate({
+  			invalidHandler: function() {
+    			$("#summary").text(validator.numberOfInvalids() + " field(s) are invalid");
+    			return false;
+    			}
+			});
+		
+	});
+
+	
+
 	$('#addSchoolbtn').click(function(){         
 		school_count += 1;
 		$('#addSchool').append("<br><br><br>\
@@ -109,4 +121,5 @@ $(document).ready(function(){
 		);
 	});
 });
+
 

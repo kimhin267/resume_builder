@@ -29,21 +29,21 @@ end
 class Resume
 	include DataMapper::Resource
 	property :id 				, Serial
-	property :title				, String, :length => 0..35, :message => "The resume title is too long, there is a maximum character length of 35"
-	property :first_name        , String, :required => true
-	property :last_name         , String, :required => true
-	property :email_address     , String, :required => true, :format => :email_address,
-										  :messages => {:format => "Please enter a valid email address",
-										  				:presence => "Email address must not be blank"}
-	property :home_address 		, String, :required => true
-	property :city              , String, :required => true
-	property :state             , String, :required => true
-	property :zip_code          , Integer, :required => true
-	property :telephone_number  , Integer, :required => true
+	property :title				, String#, :length => 0..35, :message => "The resume title is too long, there is a maximum character length of 35"
+	property :first_name        , String#, :required => true
+	property :last_name         , String#, :required => true
+	property :email_address     , String#, :required => true, :format => :email_address,
+										#  :messages => {:format => "Please enter a valid email address",
+										##  				:presence => "Email address must not be blank"}
+	property :home_address 		, String#, :required => true
+	property :city              , String#, :required => true
+	property :state             , String#, :required => true
+	property :zip_code          , Integer#, :required => true
+	property :telephone_number  , Integer#, :required => true
 
-	has n, :educations, :constraint => :destroy, :through => Resource
-	has n, :jobs, :constraint => :destroy, :through => Resource
-	has n, :otherskills, :constraint => :destroy, :through => Resource
+	has n, :educations, :constraint => :destroy
+	has n, :jobs, :constraint => :destroy
+	has n, :otherskills, :constraint => :destroy 
 	belongs_to :user
 
 	
@@ -52,13 +52,13 @@ end
 class Education
 	include DataMapper::Resource
 	property :id 				, Serial
-	property :school 			, String, :required => true
-	property :school_city 		, String, :required => true
-	property :school_state 		, String, :required => true
-	property :degree 			, String, :required => true
-	property :graduation_date 	, String, :required => true
-	property :major 			, String, :required => true
-	property :gpa 				, Integer, :required => true
+	property :school 			, String#, :required => true
+	property :school_city 		, String#, :required => true
+	property :school_state 		, String#, :required => true
+	property :degree 			, String#, :required => true
+	property :graduation_date 	, String#, :required => true
+	property :major 			, String#, :required => true
+	property :gpa 				, Integer#, :required => true
 
 	belongs_to :resume
 	 
@@ -68,14 +68,14 @@ end
 class Job
 	include DataMapper::Resource
 	property :id 				, Serial
-	property :company_name 		, String, :required => true
-	property :position 			, String, :required => true
-	property :job_skills 		, String, :required => true, :length => 200, 
-										  :messages => {:length => "The job description is too long, there is a maximum character length of 200.",
-										  				:default => nil}
-	property :job_start 		, String, :required => true
-	property :job_end 			, String, :required => true
-	#validates_length_of :job_skills, :max => 200, :message => "The job description is too long, there is a maximum character length of 200."
+	property :company_name 		, String#, :required => true
+	property :position 			, String#, :required => true
+	property :job_skills 		, String#, :required => true, :length => 200, 
+										#  :messages => {:length => "The job description is too long, there is a maximum character length of 200.",
+										#  				:default => nil}
+	property :job_start 		, String#, :required => true
+	property :job_end 			, String#, :required => true
+	
 
 	belongs_to :resume	
 end
@@ -211,10 +211,11 @@ end
 # Outputs the inputs from resume_builder
 post '/create_resume' do
 	#DataMapper::Model.raise_on_save_failure = true
+	session[:resume_output] = []
+	session[:errors].clear
 	@user = User.first(:email_address => session['user'])
 	@resume = @user.resumes.new(params[:resume])
 	@resume.save
-	session[:errors].clear
 	@resume.errors.each do |error|
  		error.each do |e|
  			if e == "Resume must not be blank"
@@ -230,42 +231,66 @@ post '/create_resume' do
 
 	params[:education].each_key do |school|
 		@school = @resume.educations.new(params[:education][school])
-		@school.save
-		@school.errors.each do |error|
- 			error.each do |e|
- 				if e == "Resume must not be blank"
- 				elsif e === "Gpa must be an integer"	
-	 			else
-					session[:errors] << e
-				end
- 			end 
- 		end
+		if @school.save
+		else
+			@school.errors.each do |error|
+	 			error.each do |e|
+	 				if e == "Resume must not be blank"
+	 				elsif e === "Gpa must be an integer"	
+		 			else
+						session[:errors] << e
+					end
+	 			end 
+	 		end
+		end
 	end
-
+	puts @school.save
+	puts @school.errors.inspect
 	params[:job].each_key do |job|
 		@job = @resume.jobs.new(params[:job][job])
-		@job.save
-		@job.errors.each do |error|
- 			error.each do |e|
- 				if e == "Resume must not be blank"
-	 			else
-					session[:errors] << e
-				end
- 			end 
- 		end
+		if @job.save
+			else
+			@job.errors.each do |error|
+	 			error.each do |e|
+	 				if e == "Resume must not be blank"
+		 			else
+						session[:errors] << e
+					end
+	 			end 
+	 		end
+		end
 	end
-
+	
+	puts @job.errors.inspect
 	params[:otherskill].each_key do |other|
 		@otherskill = @resume.otherskills.new(params[:otherskill][other])
 		@otherskill.save
 	end
-puts @resume.educations.length
+
+	session[:resume_output] << @resume.title << @resume.first_name << @resume.last_name << 
+	@resume.email_address << @resume.home_address << @resume.city << 
+	@resume.state << @resume.zip_code << @resume.telephone_number
+
+	@resume.educations.each do |e|
+		session[:resume_output] << e.school << e.school_city << e.school_state << 
+		e.degree << e.graduation_date << e.major << e.gpa
+	end
+
+	@resume.jobs.each do |j|
+		session[:resume_output] << j.company_name << j.position << j.job_skills << 
+		j.job_start << j.job_end
+	end
+	
+	@resume.otherskills.each do |o|
+		session[:resume_output] << o.skills
+	end
+
 	#unless @resume.errors.nil? and @school.errors.nil? and @job.errors.nil? and @otherskill.errors.nil? 
 	if session[:errors].empty? === false
 		erb :resume_form
 	else
+		session[:resume_output].clear
 		erb :resume_output 
-		
 	end
 end
 

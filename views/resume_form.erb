@@ -25,7 +25,7 @@
 
 
 <div>
-	<form class='form-horizontal' name='resume_builder' action='/create_resume' method='post'>
+	<form class='form-horizontal' id="validation" name='resume_builder' action='/create_resume' method='post'>
 		<% if session[:errors].empty? === false %>
 			<div class='well well-small resume-form' id='create-resume-error'>
 				<% session[:errors].each do |error| %>
@@ -38,7 +38,7 @@
 			<div class='control-group'>
 				<label id='form-page-title' class='control-label'>Title: </label>
 				<div class='controls' id='form-page-input-title'>
-					<input class='span4' placeholder='Max 35 characters'  type='text' name='resume[title]'>
+					<input class='span4 required' id="summary" placeholder='Max 35 characters'  type='text' name='resume[title]'>
 				</div>
 			</div>
 		</div>
@@ -48,7 +48,7 @@
 			<div class='control-group'>
 				<label class='control-label'>Name: </label>
 				<div class='controls'>
-					<input class='span4' placeholder='First' type='text' name='resume[first_name]' />
+					<input class='span4 required' placeholder='First' type='text' name='resume[first_name]' />
 					<input class='span4' placeholder='Last' type='text' name='resume[last_name]' />
 				</div>
 			</div>
@@ -196,7 +196,7 @@
 			<div id='addJob'></div>
 			<div class='btn' id='addJobbtn'>Add another job</div>	
 		</div>
-			
+
 
 		<div class='well well-small resume-form'>
 			<p>Other skills/experience</p>
