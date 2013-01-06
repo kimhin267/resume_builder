@@ -7,9 +7,9 @@ $(document).ready(function(){
 	$('#submit-button-resume-form').click(function() {
 		$("#delete-front_end_error-form").remove();
 		var validator = $("#validation").validate({
-			messages: {
-				zip_code: "Please enter a valid zip code."
-			},
+			/*messages: {
+				$("input[name='resume[zip_code]']"): "Please enter a valid zip code."
+			},*/
 			highlight: function(label) {
 			    $(label).closest('.control-group').addClass('error');
 			},
@@ -24,8 +24,8 @@ $(document).ready(function(){
   				}
  				else{
  					$("#front_end_error-form").append("<div class='error_message well well-small resume-form' id='delete-front_end_error-form'\
-	  				 id='front_end_error'> Your form contain(s)   "+ validator.numberOfInvalids() + " invalid field(s),\
-	    			see highlighted field(s).</div>");
+	  				 id='front_end_error'> Your form contains   "+ validator.numberOfInvalids() + " invalid fields,\
+	    			see highlighted fields.</div>");
  				}
     			$("#front_end_error").text();
     			

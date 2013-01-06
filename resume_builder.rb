@@ -35,7 +35,7 @@ class Resume
 	property :last_name         , String#, :required => true
 	property :email_address     , String#, :required => true, :format => :email_address,
 										#  :messages => {:format => "Please enter a valid email address",
-										##  				:presence => "Email address must not be blank"}
+										#  				 :presence => "Email address must not be blank"}
 	property :home_address 		, String#, :required => true
 	property :city              , String#, :required => true
 	property :state             , String#, :required => true
@@ -144,25 +144,23 @@ post '/signup' do
 	password = @user.password
 	@hash_password = Digest::SHA1.hexdigest @user.password
 	@user.password = @hash_password
-	puts @hash_password
-	puts @hash_password.length
+
 	if (@user_count >= 1)
-		puts "case a"
 		redirect ('/signup_page?email_taken_error=Email address has already been taken.')
 	end
 
-	begin
-		if @user.save!
+	begin	
+		if @user.save
+			session['user'] = @user.email_address
 			redirect ('/')
-		end
-	rescue Exception => e
-		puts e
-		if password.length <= 7
+		elsif password.length <= 7
 			redirect ('/signup_page?password_error=Password must have 8 or more characters.')	
 		else 
 			@user.raise_on_save_failure
 			redirect ('/signup_page?not_email=Please enter a valid email address.')
 		end
+	rescue Exception => e
+		puts e
 	end
 end
 

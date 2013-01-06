@@ -34,12 +34,12 @@ html, body{
 	margin-left: auto;
 	color: red;
 }
-#sign_in_error{
-	margin-top: 50px;
+.error-form-message{
+	margin-bottom: -25px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	text-align: center;
-	margin-right: auto;
-	margin-left: auto;
-	color: red;
+
 }
 .error_message{
 	color: red;
@@ -49,8 +49,16 @@ html, body{
 	color: red;
 	border-color: red;
 }
-
-
+.error-form{
+	width: 420px;
+	margin-left: auto;
+	margin-right: auto;
+	color: #B94A48;
+	background-color: #F2DEDE;
+	border-color: #EED3D7;
+	margin-bottom: 20px;
+	border-radius: 4px;
+}
 
 /*forms*/
 #about-form{width: 800px;

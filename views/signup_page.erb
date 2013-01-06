@@ -21,18 +21,19 @@
 	</ul>
 </div>
 
-<div class='error-form'>
-	<%if params[:email_taken_error] or params[:empty_signup_field] or params[:not_email] or params[:password_error] %>
-		<span class='alert alert-error bold'>	
+
+<%if params[:email_taken_error] or params[:empty_signup_field] or params[:not_email] or params[:password_error] %>
+	<div class='error-form'>
+		<div class='error-form-message bold'>	
 			<%='* '%>
 			<%= params[:email_taken_error] %>
 			<%= params[:empty_signup_field] %>
 			<%= params[:not_email] %>
 			<%= params[:password_error] %>
-		</span>
-	<%end%>
-	<div><br></div>
-</div>
+		</div>
+	</div>
+<%end%><br/>
+
 
 <div id='signup_form'>
 	<div>

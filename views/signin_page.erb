@@ -21,25 +21,28 @@
 	</ul>
 </div>
 
-<div class='error-form'>
+
 	<%if params[:login_error] or params[:need_login] %>
-		<span class='alert alert-error bold'>	
+	<div class='error-form'>
+		<div class='bold error-form-message'>	
 			<%= '* ' %>
 			<%= params[:login_error] %>
 			<%= params[:need_login] %>
 			<%= params[:email_do_not_exists] %>
-		</span>
+		</div>
+	</div>
 	<%elsif params[:email_do_not_exists] %> 
-		<span class='alert alert-error bold'>	
+	<div class='error-form'>
+		<div class='bold error-form-message' >	
 			<%= '* ' %>
 			<%= params[:email_do_not_exists] %>
 			<%= 'Please click ' %>
 			<a href="/signup_page">here</a>
-			<%= ' to signup.' %>
-		</span>
-	<%end%>
-	<div><br></div>
-</div>
+			<%= ' to sign up.' %>
+		</div>
+	</div>
+	<%end%><br/>
+
 
 <div id='signin_form' >
 	<div>
