@@ -7,6 +7,7 @@ require 'dm-migrations'
 require 'dm-validations'
 require 'dm-timestamps'
 require 'data_mapper'
+require 'digest'
 
 
 DataMapper.setup :default, "sqlite://#{Dir.pwd}/resume_builder.db"
@@ -106,7 +107,7 @@ end
 post '/signin' do
 	login = params[:login]
 	email = login['email_address']
-	password = login['password']
+	password = Digest::SHA1.hexdigest login['password']
 	user = User.first(:email_address => email)
 	user_count = User.count(:email_address => login['email_address'] )
 
@@ -141,17 +142,27 @@ post '/signup' do
 	#@user.email_address = sign_up['email_address']
 	@user_count = User.count(:email_address => @user.email_address)
 	password = @user.password
+	@hash_password = Digest::SHA1.hexdigest @user.password
+	@user.password = @hash_password
+	puts @hash_password
+	puts @hash_password.length
 	if (@user_count >= 1)
+		puts "case a"
 		redirect ('/signup_page?email_taken_error=Email address has already been taken.')
 	end
-	
-	if @user.save 
-		redirect ('/')
-	elsif password.length <= 7
-		redirect ('/signup_page?password_error=Password must have 8 or more characters.')	
-	else 
-		@user.raise_on_save_failure
-		redirect ('/signup_page?not_email=Please enter a valid email address.')
+
+	begin
+		if @user.save!
+			redirect ('/')
+		end
+	rescue Exception => e
+		puts e
+		if password.length <= 7
+			redirect ('/signup_page?password_error=Password must have 8 or more characters.')	
+		else 
+			@user.raise_on_save_failure
+			redirect ('/signup_page?not_email=Please enter a valid email address.')
+		end
 	end
 end
 

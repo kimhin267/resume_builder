@@ -70,11 +70,13 @@ html, body{
 #form-page-input-title{
 	margin-left: 0px;
 	padding-left: 50px;}
-#signup_btn{
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 0px;
-	padding-right: 0px;}
+#signin-btn{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	display: block;
+	float: none;
+}
 #resume-list{
 	list-style-type: none;}
 #center-resume-title{

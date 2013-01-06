@@ -5,7 +5,11 @@ $(document).ready(function(){
 	var other_count = 0;
 
 	$('#submit-button-resume-form').click(function() {
+		$("#delete-front_end_error-form").remove();
 		var validator = $("#validation").validate({
+			messages: {
+				zip_code: "Please enter a valid zip code."
+			},
 			highlight: function(label) {
 			    $(label).closest('.control-group').addClass('error');
 			},
@@ -13,10 +17,17 @@ $(document).ready(function(){
 			     $(label).closest('.control-group').removeClass('error');
 			},
   			invalidHandler: function() {
-  				$("#front_end_error-form").append("<div class='error_message well well-small resume-form'\
-  				 id='front_end_error'></div>");
-    			$("#front_end_error").text("Your form contains " + validator.numberOfInvalids() + " invalid field(s),\
-    			see highlighted fields.");
+  				if (validator.numberOfInvalids() == 1){
+	  				$("#front_end_error-form").append("<div class='error_message well well-small resume-form' id='delete-front_end_error-form'\
+	  				 id='front_end_error'> Your form contain "+ validator.numberOfInvalids() + " invalid field,\
+	    			see highlighted field.</div>");
+  				}
+ 				else{
+ 					$("#front_end_error-form").append("<div class='error_message well well-small resume-form' id='delete-front_end_error-form'\
+	  				 id='front_end_error'> Your form contain(s)   "+ validator.numberOfInvalids() + " invalid field(s),\
+	    			see highlighted field(s).</div>");
+ 				}
+    			$("#front_end_error").text();
     			
     			return false;
     		}
