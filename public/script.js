@@ -72,7 +72,8 @@ $(document).ready(function(){
 
 	$('#addSchoolbtn').click(function(){
 		school_count += 1;
-		$('#addSchool').append("<br><br><br>\
+		$('#addSchool').append("\
+		<div class='delete-school'><br>\
 			<div class='control-group'>\
 				<label class='control-label'>School's name: </label>\
 				<div class='controls'>\
@@ -120,60 +121,87 @@ $(document).ready(function(){
 				<div class='controls'>\
 					<input class='gpa-validate' type='text' name='education[" + school_count + "][gpa]'>\
 				</div>\
-			</div>"
+			</div>\
+			<div class='btn btn-danger delete-school-btn'>\
+				Delete\
+			</div>\
+			<div><br/></div>\
+		</div>"
 		);
+		$(".delete-school-btn").click(function(){
+				$(this).closest(".delete-school").remove();
+			});
 	});
+
+
 
 	$('#addJobbtn').click(function(){
 		job_count += 1;
-		$('#addJob').append("<br><br><br><div class='control-group'>\
-				<label class='control-label'>Company's Name: </label>\
-				<div class='controls'>\
-					<input class='required' type='text' name='job["+ job_count +"][company_name]'>\
+		$('#addJob').append("\
+			<div class='delete-job'><br/>\
+				<div class='control-group'>\
+					<label class='control-label'>Company's Name: </label>\
+					<div class='controls'>\
+						<input class='required' type='text' name='job["+ job_count +"][company_name]'>\
+					</div>\
 				</div>\
-			</div>\
-			\
-			<div class='control-group'>\
-				<label class='control-label'>Position: </label>\
-				<div class='controls'>\
-					<input class='required' type='text' name='job["+ job_count +"][position]'>\
+				\
+				<div class='control-group'>\
+					<label class='control-label'>Position: </label>\
+					<div class='controls'>\
+						<input class='required' type='text' name='job["+ job_count +"][position]'>\
+					</div>\
 				</div>\
-			</div>\
-			\
-			<div class='control-group'>\
-				<!-- make into drop box -->\
-				<label class='control-label'>Start date (month/year): </label>\
-				<div class='controls'>\
-					<input class='required' type='text' name='job["+ job_count +"][job_start]'>\
+				\
+				<div class='control-group'>\
+					<!-- make into drop box -->\
+					<label class='control-label'>Start date (month/year): </label>\
+					<div class='controls'>\
+						<input class='required' type='text' name='job["+ job_count +"][job_start]'>\
+					</div>\
 				</div>\
-			</div>\
-			\
-			<div class='control-group'>\
-				<!-- make into drop box -->\
-				<label class='control-label'>End date (month/year): </label>\
-				<div class='controls'>\
-					<input class='required' type='text' name='job["+ job_count +"][job_end]'>\
+				\
+				<div class='control-group'>\
+					<!-- make into drop box -->\
+					<label class='control-label'>End date (month/year): </label>\
+					<div class='controls'>\
+						<input class='required' type='text' name='job["+ job_count +"][job_end]'>\
+					</div>\
+				</div>	\
+				\
+				<div class='control-group'>\
+					<label class='control-label'>Job experience: </label>\
+					<div class='controls'>\
+						<!--<input type='textarea' name='resume[job_skills]'>-->\
+						<textarea class='span5 job-validate' name='job["+ job_count +"][job_skills]' placeholder='Max 200 characters.You can drag the bottom left corner to make text box larger.'></textarea>\
+					</div>\
 				</div>\
-			</div>	\
-			\
-			<div class='control-group'>\
-				<label class='control-label'>Job experience: </label>\
-				<div class='controls'>\
-					<!--<input type='textarea' name='resume[job_skills]'>-->\
-					<textarea class='span5 job-validate' name='job["+ job_count +"][job_skills]' placeholder='Max 200 characters.You can drag the bottom left corner to make text box larger.'></textarea>\
+				<div class='btn btn-danger delete-job-btn'>\
+					Delete\
 				</div>\
+				<div><br/></div>\
 			</div>"
 		);
+		$(".delete-job-btn").click(function(){
+			$(this).closest(".delete-job").remove();
+		});
 	}); 
 
 	$('#addOtherExpbtn').click(function(){
 		other_count += 1;
-		$('#addOtherExp').append("<div class='control-group'>\
-				<div class='controls'>\
-					<textarea class='span5' name='otherskill["+ other_count +"][skills]' placeholder='Max 200 characters. You can drag the bottom left corner to make text box larger.'></textarea>\
+		$('#addOtherExp').append("\
+			<div class='delete-otherExp'>\
+				<div class='control-group'>\
+					<div class='controls pull-left'>\
+						<textarea class='span5' name='otherskill["+ other_count +"][skills]' placeholder='Max 200 characters. You can drag the bottom left corner to make text box larger.'></textarea>\
+					</div>\
+					<div class='delete-otherExp-btn btn-danger pull-left btn'> Delete</div>\
 				</div>\
 			</div>"
 		);
+		$(".delete-otherExp-btn").click(function(){
+			$(this).closest(".delete-otherExp").remove();
+		});
 	});
 });
 

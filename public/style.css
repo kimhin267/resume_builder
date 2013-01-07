@@ -3,7 +3,6 @@ html, body{
 	height: 100%;
 }
 #layout_body{
-	
 	background-image: url('http://personalinternettraining.com/wp-content/uploads/2011/08/background.jpg');
 	background-size: 1005px 500%;
 	background-repeat: no-repeat;
@@ -60,6 +59,7 @@ html, body{
 	border-radius: 4px;
 }
 
+
 /*forms*/
 #about-form{width: 800px;
 	margin-left: auto;
@@ -103,9 +103,19 @@ html, body{
 	margin-right: auto;
 	margin-left: auto;
 	background: lightcyan;}
-#submit-button-form{text-align: center;}
+
+
+
+
+/*buttons*/
+#submit-button-form{text-align: center;
+}
 #submit-button-resume-form{padding: 15px 0px;
-	background: lightcyan;}
+	background: lightcyan;
+}
+.delete-otherExp-btn{
+	margin-left: 10px;
+}
 
 
 /*nav bar*/
