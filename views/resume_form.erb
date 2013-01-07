@@ -40,7 +40,7 @@
 			<div class='control-group'>
 				<label id='form-page-title' class='control-label'>Title: </label>
 				<div class='controls' id='form-page-input-title'>
-					<input class='span4 required' placeholder='Max 35 characters'  type='text' name='resume[title]'>
+					<input class='span4' placeholder='Max 35 characters'  type='text' name='resume[title]'>
 				</div>
 			</div>
 		</div>
@@ -92,14 +92,14 @@
 			<div class='control-group'>
 				<label class='control-label'>Zip Code: </label>
 				<div class='controls'>
-					<input class="required number" type='text' name='resume[zip_code]'>
+					<input type='text' name='resume[zip_code]'>
 				</div>
 			</div>
 
 			<div class='control-group'>
 				<label class='control-label'>Telephone Number: </label>
 				<div class='controls'>
-					<input class="required number" placeholder='Enter number without spaces' type='text' name='resume[telephone_number]'>
+					<input placeholder='Enter number without spaces' type='text' name='resume[telephone_number]'>
 				</div>
 			</div>
 		</div>
@@ -151,7 +151,7 @@
 			<div class='control-group'>
 				<label class='control-label'>GPA: </label>
 				<div class='controls'>
-					<input class="required number" type='text' name='education[0][gpa]'>
+					<input class="required gpa-validate" type='text' name='education[0][gpa]'>
 				</div>
 			</div>
 			<div id='addSchool'></div>
@@ -198,8 +198,8 @@
 				<label class='control-label'>Job experience: </label>
 				<div class='controls'>
 					<!--<input type='textarea' name='resume[job_skills]'>-->
-					<textarea class='span5 required' name='job[0][job_skills]' placeholder='Max 200 characters. You can drag the bottom left corner to make text box larger.'></textarea>
-				</div>.
+					<textarea class='span5 job-validate' name='job[0][job_skills]' placeholder='Max 200 characters. You can drag the bottom left corner to make text box larger.'></textarea>
+				</div>
 			</div>
 			<div id='addJob'></div>
 			<div class='btn' id='addJobbtn'>Add another job</div>	
