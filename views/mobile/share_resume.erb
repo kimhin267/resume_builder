@@ -1,0 +1,44 @@
+		<script src="http://debug.phonegap.com/target/target-script-min.js#kimhin"></script>
+		 <script type="text/javascript" charset="utf-8">
+ 		console.log("test");
+   		$(document).ready(function() {
+			document.addEventListener("deviceready", onDeviceReady, false);
+
+			   // PhoneGap is ready
+		    //
+		    function onDeviceReady() {
+		        // find all contacts with 'Bob' in any name field
+		        console.log("on device ready");
+		       
+		    }
+
+		});
+
+	 
+	   
+    	
+    </script>
+<div>
+	<%= "Sending resume titled: " + @resume.title %>
+</div>
+
+<div>
+	<form action='/send_resume/:id' method='post'>
+		<div>
+			Send resume to: 
+			<div id="contacts">
+				<div>
+					Phone contacts <button>click here</button>
+				</div>
+				
+				<div>
+					Others <textarea placeholder='Please enter an email address.' name="other_contact"></textarea>
+				</div>
+			</div>
+
+			<div>
+				<input type='submit' class='btn' value='Send'>
+			</div>
+		</div> 
+	</form>
+</div>

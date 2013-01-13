@@ -1,0 +1,59 @@
+<div class='well well-small' id='view-resume-container'>
+	<div id='view-resume-name-email'>
+		<h5 class='pull-left font-weight-normal' id="name"><%= @resumes.first_name + ' ' + @resumes.last_name %></h5> <h5 class='pull-right font-weight-normal' id="email"><%= @resumes.email_address %></h5>	
+	</div>
+
+	<div id="resume-bottom-border"></div>
+
+	<div>
+		<h5 class='font-weight-normal'><%= @resumes.home_address + ' | ' + @resumes.city + ' | ' + @resumes.state + ' | ' + @resumes.zip_code.to_s + ' | Telephone number: ' + @resumes.telephone_number.to_s %></h5>
+	</div>
+
+	<div>
+		<div class='pull-left view-resume-subject'>
+			<h5 class='font-weight-normal'>Education:</h5>
+		</div>
+
+		<div class='pull-left' id='view-resume-education-info'>
+			<% @resumes.educations.each do |i| %>
+				<h5 class='view-resume-space-between-lines'><%= i.school + ', ' + i.school_city + ', ' + i.school_state %></h5>
+				<h5 class='italic view-resume-space-between-lines'><%= i.degree + ', Graduation date: ' + i.graduation_date %></h5>
+				<h5 class='italic view-resume-space-between-lines'>Major: <%= i.major %></h5>
+				<h5 class='view-resume-space-between-lines'>GPA: <%= i.gpa %></h5><br>
+			<%end%>
+	 	</div>
+	</div>	
+
+	<div class="clear">
+		<div class='pull-left view-resume-subject'>
+			<h5 class='font-weight-normal'>Experience:</h5>
+		</div>
+
+		<div class='pull-left view-resume-subject-info'>
+			<% @resumes.jobs.each do |i| %>
+				<div class='inline-block my-resume-container'>
+					<h5 class='pull-left' id='spacing-company-name'><%= i.company_name %></h5>
+					<h5 class='font-weight-normal pull-right'><%= i.job_start + ' - ' + i.job_end %></h5>
+					<br><h5 class='italic view-resume-space-between-lines'><%= i.position %></h5>
+					<ul>
+						<li><h5 class='font-weight-normal'><%= i.job_skills %></h5></li>
+			 		</ul>
+				</div>
+		 	<%end%>
+	 	</div>
+	</div>
+
+	<div class="clear">
+		<div class='pull-left view-resume-subject'>
+			<h5 class='font-weight-normal'>Other experience/skills:</h5>
+		</div>
+		<div class='pull-left view-resume-subject-info'>
+			<% @resumes.otherskills.each do |i| %>
+				<ul class='view-resume-space-between-lines' id='view-resume-other-skills'>
+					<li><%= i.skills %></li>
+				</ul>
+			<%end%>
+		</div>
+	</div>
+	<div class='clear'></div>
+</div>

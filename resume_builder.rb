@@ -1,13 +1,16 @@
 require 'sinatra'
 require 'sqlite3'
-enable :sessions
-
 require 'dm-core'
 require 'dm-migrations'
 require 'dm-validations'
 require 'dm-timestamps'
 require 'data_mapper'
 require 'digest'
+require 'pdfkit'
+require 'pony'
+
+use PDFKit::Middleware
+enable :sessions
 
 
 DataMapper.setup :default, "sqlite://#{Dir.pwd}/resume_builder.db"
@@ -120,15 +123,51 @@ post '/signin' do
 	if user_count === 1 && user_password === password
 		session['user'] = email
 		@user = email
-		redirect to('/')
+		if params[:device] == 'mobile_app'
+			redirect to('/mobile_app')
+		else
+			redirect to('/')
+		end
 	else
 		redirect to('/signin_page?login_error=Your email address or password is incorrect.')
 	end	
 end
 
+get '/mobile_app' do
+	@user = User.first(:email_address => session['user'])
+	@resumes = @user.resumes
+	return erb :"mobile/mobile_app", {:layout => :"mobile/layout"}
+end
 
 get '/signup_page' do
 	return erb :signup_page
+end
+
+get '/share_resume/:id' do
+	@user = User.first(:email_address => session['user'])
+	@resume = @user.resumes.first(params[:id])
+	return erb :"mobile/share_resume"
+end
+
+post '/send_resume/:id' do 
+	@user = User.first(:email_address => session['user'])
+	@resume = @user.resumes.first(params[:id])
+		Pony.mail({
+			:via => :smtp,
+		    :via_options => {
+		   		:address => 'smtp.gmail.com',
+		   		:port => 587,
+		   		:user_name => 'kim.hin267@gmail.com',
+		   		:password => 'KH1990@gm',
+		   		:authentication => :plain,
+		   		:enable_starttls_auto => true
+		   	},
+			:to => params[:other_contact],
+		    :from => @user.email_address,
+		    :subject => "Welcome to Breezy Resume!",
+		    :html_body => erb(:email)
+		})
+	return erb :"mobile/share_resume"
 end
 
 post '/signup' do
@@ -155,6 +194,20 @@ post '/signup' do
 	begin
 		if @user.save
 			session['user'] = @user.email_address
+			Pony.mail :via => :smtp,
+					   :smtp => {
+					   		:host => 'smtp.gmail.com',
+					   		:port => 465,
+					   		:user => 'kim.hin267@gmail.com',
+					   		:password => 'KH1990@gm',
+					   		:auth => :plain,
+					   		:domain => 'breezyresume.com',
+					   		:enable_starttls_auto => true
+					   	},
+						:to => @user.email_address,
+					  :from => "kim.hin267@gmail.com",
+					  :subject => "Welcome to Breezy Resume!",
+					  :body => erb(:email)
 			redirect ('/')
 		# elsif password.length <= 7
 		# 	redirect ('/signup_page?password_error=Password must have 8 or more characters.')	
@@ -163,7 +216,7 @@ post '/signup' do
 			redirect ('/signup_page?not_email=Please enter a valid email address.')
 		end
 	rescue Exception => e
-		puts e	
+		puts "Error #{e.inspect}" 	
 	end
 end
 
@@ -184,12 +237,6 @@ get '/my_resumes' do
 	return erb :my_resumes
 end
 
-# my personal resume
-get '/resume' do
-	return erb :resume	
-end
-
-
 get '/view_resumes/:id' do
 	@user = User.first(:email_address => session['user'])
 	@resumes = @user.resumes.first(params[:id])
@@ -205,6 +252,11 @@ delete '/view_resumes/:id' do
 	redirect to ('/my_resumes')
 end
 
+get '/resume_pdf/:id' do
+	@user = User.first(:email_address => session['user'])
+	@resumes = @user.resumes.first(params[:id])
+	return erb :resume_pdf
+end
 
 get '/logout' do
 	session.clear
@@ -308,8 +360,22 @@ post '/create_resume' do
 	#unless @resume.errors.nil? and @school.errors.nil? and @job.errors.nil? and @otherskill.errors.nil? 
 end
 
+get '/edit_resume' do
+	@user = User.first(:email_address => session['user'])
+	@resume = @user.resumes.first(params[:id])
+	return erb :resume_form
+end
+
+post '/update_resume' do
+end
+
 get '/about' do
 	return erb :about
+end
+
+# my personal resume
+get '/resume' do
+	return erb :resume	
 end
 
 not_found do

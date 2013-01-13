@@ -1,6 +1,5 @@
 source :rubygems
 gem 'sinatra'
-gem 'thin'
 
 group :development, :test  do
     gem 'sqlite3'
@@ -13,3 +12,5 @@ gem 'dm-sqlite-adapter'
 gem 'dm-migrations'
 gem 'dm-validations'
 gem 'dm-timestamps'
+gem 'pony'
+gem 'pdfkit'

@@ -1,0 +1,16 @@
+<div id='resume-container'>
+	<ul id='resume-list'>
+		<div class='well well-small' id='resume-list-container'>
+			<% if @resumes.length == 0 %>
+				<h1 class="text-center"><%= "No resume." %></h1>
+			<%end%>
+			<% @resumes.each do |resume| %>
+				<div>
+					<h4 class='pull-left span4'><%= resume.title %></h4>
+					<a class='pull-left btn btn-primary span2' href="/share_resume/<%= resume.id %>">Share Resume</a>
+					<a class='pull-left btn btn-info span2' href="/view_resumes/<%= resume.id %>">View Resume</a>
+				</div>
+			<% end %>
+		</div>
+	</ul>
+</div>
