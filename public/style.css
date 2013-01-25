@@ -270,6 +270,15 @@ div#compTIA_logo{
 	.form-horizontal .control-group {
 		margin-right: -10%;
 	}
+	#index-hero-unit {
+		width: 60%;
+	}
+	.hero-unit h1 {
+		font-size: 3em;
+	}
+	.hero-unit p {
+		font-size: 1em;
+	}
 }
 
 @media screen and (max-width: 767px) {
@@ -278,9 +287,6 @@ div#compTIA_logo{
 	}
 	#outer_container {
 		width: 100%;
-	}
-	#index-hero-unit {
-		width: 60%;
 	}
 	#learn-more-btn {
 		text-align: center;
