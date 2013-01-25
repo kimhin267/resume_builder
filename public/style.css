@@ -1,13 +1,18 @@
 /*website layout*/
 html, body{
+	font-size: 1em;
 	height: 100%;
 }
+input, textarea {
+	width: 85%;
+}
+
 #layout_body{
 	background-image: url('http://personalinternettraining.com/wp-content/uploads/2011/08/background.jpg');
-	background-size: 1005px 500%;
+	background-size: 70% 500%;
 	background-repeat: no-repeat;
-	background-position-x: center;
-	background-position-y: 38px;
+	background-position: center top;
+	/*background-position-y: 38px;*/
 	/*
 	background: url('http://personalinternettraining.com/wp-content/uploads/2011/08/background.jpg') no-repeat center center fixed; 
 	-webkit-background-size: cover;
@@ -17,12 +22,15 @@ html, body{
 #outer_container{
 	margin-left: auto;
 	margin-right: auto;
-	width: 1004px;
+	width: 70%;
 	min-height: 100%;
 	position: relative;
 }
 #content{
 	padding-bottom: 60px;	
+}
+.hero-unit h1 {
+
 }
 
 /*error messages*/
@@ -49,7 +57,7 @@ html, body{
 	border-color: red;
 }
 .error-form{
-	width: 420px;
+	width: 50%;
 	margin-left: auto;
 	margin-right: auto;
 	color: #B94A48;
@@ -66,11 +74,11 @@ html, body{
 	margin-right: auto;
 	margin-top: 50px;}
 #signin_form{
-	width: 420px;
+	width: 50%;
 	margin-left: auto;
 	margin-right: auto;}
 #signup_form{
-	width: 420px;
+	width: 30em;
 	margin-left: auto;
 	margin-right: auto;}
 #form-page-title{
@@ -93,25 +101,26 @@ html, body{
 	background-color: lightcyan;
 	padding-top: 25px;}
 #resume-container{
-	padding-top: 100px;
-	width: 650px;
+	padding-top: 3em;
+	width: 90%;
 	margin-left: auto;
 	margin-right: auto;}
 .resume-form{
-	width: 800px;
+	width: 85%;
 	padding-top: 25px;
 	margin-right: auto;
 	margin-left: auto;
 	background: lightcyan;}
 
 
-
-
 /*buttons*/
-#submit-button-form{text-align: center;
+#submit-button-form{
+	text-align: center;
 }
-#submit-button-resume-form{padding: 15px 0px;
+#submit-button-resume-form{
+	padding: 15px 0px;
 	background: lightcyan;
+	width: 50%;
 }
 .delete-otherExp-btn{
 	margin-left: 10px;
@@ -119,7 +128,10 @@ html, body{
 
 
 /*nav bar*/
-.nav-bar{position: fixed;}
+.nav-bar{
+	width: inherit;
+	position: fixed;
+}
 .nav-background{background: black;}
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover{background-color: lightcyan;}
@@ -231,168 +243,195 @@ html, body{
    	text-align: center;
 }
 #index-hero-unit{
-	width: 750px;
+	width: 70%;
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 60px;}
 div#compTIA_logo{
 	text-align: center;}
 
+.my-resume-option-btns {
 
-
-
-
-/*
-
-body{
-	background:#FFFFFF;
-	font-family:  arial;
-	font-size: .8em;
-}
-#index_body{
-	background: lightblue;
-}
-#webpage_body{
-	background: lightblue;
-}
-#resume_form_body{
-	background: lightblue;
-}
-#my_resumes_body{
-	background: lightblue;
-}
-#resume_form_area{
-	margin-top: 45px;
-	font-size: 1.3em;
 }
 
-ul.nav li{
-	color:red;
-}
-ul.nav_bar {
-	background: #19252E;
-	position: fixed;
-	top: 7px;
-	width: 100%;
-	height: 35px;
-	z-index: 999;
-	margin-left: -30px;
-	padding-top: 4px;
-	text-align: center;
-	display: inline-block;
-}
-ul.nav_bar li{
-	display:inline-block;
-	padding-left: 5px;
-	padding-right: 5px;
-	margin-left: 1px;
-	margin-right:1px;
+@media screen and (max-width: 1000px) {
+	#center-resume-title {
+		width: 100%;
+	}
+	.my-resume-option-btns {
+		float: left;
+	}
+	.form-horizontal .control-label {
+		width: auto;
+	}
+	.form-horizontal .controls {
+		margin-left: 25%;
+	}
+	.form-horizontal .control-group {
+		margin-right: -10%;
+	}
 }
 
-ul.nav_bar li a{
-	display:inline-block;
-	text-decoration:none;
-	padding:5px;
-	color: white;
-}
-*/
+@media screen and (max-width: 767px) {
+	#layout_body {
+		background-size: 100% 500%;
+	}
+	#outer_container {
+		width: 100%;
+	}
+	#index-hero-unit {
+		width: 60%;
+	}
+	#learn-more-btn {
+		text-align: center;
+	}
+	.hero-unit {
+		margin-top: 10%;
+	}
+	.hero-unit h1{
+		font-size: 2.85714em;
+		width: 85%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.hero-unit p{
+		font-size: 1.1em;
+		line-height: 1.5em;
+		width: 85%;
+		text-align: justify;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	
+	.resume-form {
+		width: 85%;
+	}
+	#center-resume-title {
+		width: 100%;
+	}
+	.my-resume-option-btns {
+		float: left;
+	}
+	#resume-container {
+		width: 75%;
+	}
 
-/*
-#webpage_under_construction{
-	font-size: 4em;
-	font-weight: bold;
-	margin-top: 260px;
-	text-align: center;
-}
-#index_h1{
-	margin-top: 45px;
-	font-size: 3em;
-	font-weight: bold;
-}
-*/
-
-/*
-.links {
-	font-size: 1.5em;
-	font-weight: bold;
-	color: red;
-	text-decoration: none;
-}
-/*
-h1 {
-	font-size: 1em;
-	margin-bottom: 10px;
-}
-h2 {
-	font-size: 1em;
-	font-style: italic;
-	margin-top: -9px;
-	font-weight: normal;
-}
-h3{
-	font-size: 1em;
-	font-weight: normal;
-	margin-top: -10px;
-
-div.job {
-	float: left;
-	width: 500px;
-	padding-right: 4px;
 }
 
-div.date {
-	float: right;	
+@media screen and (max-width: 655px) {
+	#form-page-title {
+		width: 100%;
+	}
+	#form-page-input-title {
+		padding-left: 0;
+	}
+	#index-hero-unit {
+		width: 85%;
+	}
+	.hero-unit {
+		padding: 2em 1em; 
+	}
+	.hero-unit h1 {
+		width: 70%;
+	}
+	.hero-unit p {
+		width: 70%;
+	}
+	.form-horizontal .control-group {
+		margin-bottom: .36em;
+	}
+	.form-horizontal .control-label {
+		width: 100%;
+		text-align: left;
+	}
+	.form-horizontal .controls {
+		margin-left: 0;
+	}
+	#signin_form {
+		width: 70%;
+	}
+	.error-form {
+		width: 70%;
+	}
 }
 
-div.resume_row {
-	width: 1031px;
-	min-height: 200px;
-	clear: both;
-	min-height: 50px;
+
+@media screen and (max-width: 500px) {
+	input, textarea {
+		width: 95%;
+	}
+	.nav-tabs > .active > a {
+		font-size: 1.1em;
+	}
+	.nav-tabs > li {
+		font-size: 1.1em;
+		width: 100%;
+		text-align: center;
+	}
+	.nav-tabs > .active > a {
+		font-size: 1.1em;
+		text-align: center;
+		font-weight: bold;
+	}
+	.nav-tabs > .active > a, 
+	.nav-tabs > .active > a:hover {
+		-webkit-border-radius: 0;
+	}
+	#index-hero-unit {
+		width: 
+	}
+	.hero-unit h1 {
+		width: 100%;
+		font-size: 1.85714em;
+	}
+	.hero-unit p {
+		width: 100%;
+		font-size: 1em;
+		line-height: 1.3em;
+	}
+	.my-resume-btn {
+		width: 80%;
+		float: none;
+		margin: 0;
+		font-size: .8em;
+	}
+	.my-resume-option-btns {
+		padding-left: 5%;
+	}
+	input[type="submit"] {
+		width: 116%;
+		font-size: 1em;
+	}
+	input, textarea {
+		width: 88%;
+	}
+	#center-resume-title {
+		font-size: .8em;
+	}
 }
 
-div.experience {
-	width: 100px;
-	float: left;
-	min-height: 87px;
-}
+@media screen and (max-width: 360px) {
+	#index-hero-unit {
+		width: 85%
+	}
+	.nav-tabs > li {
+		font-size: 1em;
+	}
+	.nav-tabs > .active > a {
+		font-size: 1em;
+	}
+	#center-resume-title {
+		font-size: .7em;
+	}
+	input[type="submit"] {
+		width: 118%;
+		font-size: .9em;
+	}
+	input, textarea {
+		width: 86%;
+	}
+	.my-resume-btn {
+		font-size: .7em;
+	}
 
-div.resume ul li{
-	text-decoration: none;
 }
-span#name{
-	font-weight: bold;
-}
-span#email{
-	font-weight: bold;
-	float: right;
-}
-*/
-
-/*
-div#right_side_panel{
-	margin-left: 1032px;
-	margin-top: -362px;
-}
-ul.subcategories{
-	margin-top: 0px;
-	margin-bottom: 1px;
-}
-
-a{
-	text-decoration: none;
-	color: blue;
-	font-weight: bold;
-}
-ul {
-	margin-top: -7px;
-}
-
-.nav_bar li:hover{
-   background: red;
- }
-a:active{
-	color: blue;
-}
-*/
-;

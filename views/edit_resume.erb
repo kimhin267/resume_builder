@@ -1,0 +1,236 @@
+<div class='nav-background'>
+	<ul class = 'nav nav-tabs'>
+		<li><a href='/'>BR</a></li>
+		<li class='active'><a href='/create_resume'>Create Resume</a></li>
+		<li><a href='/my_resumes'>View Resumes</a></li>
+		<li>
+			<% if session['user'].nil? %>
+			<a href='/signin_page'>Signin</a>
+			<%end%>
+		</li>
+		<li>
+			<% if session['user'].nil? %>
+			<a href='/signup_page'>Signup</a>
+			<%end%>
+		</li>
+		<li>
+			<% if session.has_key?('user') %>
+				<a href='/logout'>Logout</a>
+			<% end %>
+		</li>
+	</ul>
+</div>
+
+
+
+<div>
+	<form class='form-horizontal' id="validation" name='resume_builder' action='/update_resume/<%= @resume.id %>' method='post'>
+		<div id="front_end_error-form">	
+		</div>
+		<% if session[:errors].empty? === false %>
+			<div class='well well-small resume-form' id='create-resume-error'>
+				<% session[:errors].each do |error| %>
+					<li class="error_message no-bullet-point"><%= "! " + error %></li>
+				<%end%>
+			</div>
+		<%end%>
+
+		<div class='well well-small resume-form'>	
+			<div class='control-group'>
+				<label id='form-page-title' class='control-label'>Title: </label>
+				<div class='controls' id='form-page-input-title'>
+					<input class='span4' placeholder='Max 35 characters'  type='text' name='resume[title]' value='<%= @resume.title %>'>
+				</div>
+			</div>
+		</div>
+
+		<div class='well well-small resume-form'>
+			<p>Personal Information</p>
+			<div class='control-group'>
+				<label class='control-label'>First name: </label>
+				<div class='controls'>
+					<input class='span4 required' placeholder='First' type='text' name='resume[first_name]' value='<%= @resume.first_name %>'/>
+				</div>
+			</div>
+
+			<div class='control-group'>
+				<label class='control-label'>Last name: </label>
+				<div class='controls'>
+					<input class='span4 required' placeholder='Last' type='text' name='resume[last_name]' value='<%= @resume.last_name %>'/>
+				</div>
+			</div>
+
+			<div class='control-group'>
+				<label class='control-label'>Email Address: </label>
+				<div class='controls'>
+					<input class='span6 required email' placeholder='Example@BR.com' type='text' name='resume[email_address]' value='<%= @resume.email_address %>'/>
+				</div>
+			</div>
+
+			<div class='control-group'>
+				<label class='control-label'>Home Address: </label>
+				<div class='controls'>
+					<input placeholder='Home address, Apartment suite, unit, building, floor, ect.' class='span6 required' type='text' name='resume[home_address]' value='<%= @resume.home_address %>'/>
+				</div>
+			</div>	
+
+			<div class='control-group'>
+				<label class='control-label'>City: </label>
+				<div class='controls'>
+					<input class="required" type='text' name='resume[city]' value='<%= @resume.city %>'/>
+				</div>
+			</div>	
+
+			<div class='control-group'>
+				<label class='control-label'>State: </label>
+				<div class='controls'>
+					<input class="required" type='text' name='resume[state]' value='<%= @resume.state %>'/>
+				</div>
+			</div>	
+
+			<div class='control-group'>
+				<label class='control-label'>Zip Code: </label>
+				<div class='controls'>
+					<input type='text' name='resume[zip_code]' value='<%= @resume.zip_code %>'/>
+				</div>
+			</div>
+
+			<div class='control-group'>
+				<label class='control-label'>Telephone Number: </label>
+				<div class='controls'>
+					<input placeholder='Enter number without spaces' type='text' name='resume[telephone_number]' value='<%= @resume.telephone_number %>'/>
+				</div>
+			</div>
+		</div>
+
+		<div class='well well-small resume-form'>
+			<p>Education</p>
+			<% @resume.educations.each do |i| %>
+				<div class='control-group'>
+					<label class='control-label'>School's name: </label>
+					<div class='controls'>
+						<input class="required" type='text' name='education[0][school]' value='<%= i.school %>'/>
+					</div>	
+				</div>
+
+				<div class='control-group'>
+					<label class='control-label'>City: </label>
+					<div class='controls'>
+						<input class="required" type='text' name='education[0][school_city]' value='<%= i.school_city %>'/>
+					</div>
+				</div>
+
+				<div class='control-group'>
+					<label class='control-label'>State: </label>
+					<div class='controls'>
+						<input class="required" type='text' name='education[0][school_state]' value='<%= i.school_state %>'/>
+					</div>
+				</div>	
+
+				<div class='control-group'>
+					<label class='control-label'>Degree: </label>
+					<div class='controls'>
+						<input  class="required" type='text' name='education[0][degree]' value='<%= i.degree %>'/>
+					</div>
+				</div>
+
+				<div class='control-group'>
+					<label class='control-label'>Graduation Date: </label>
+					<div class='controls'>
+						<input class="required" type='text' name='education[0][graduation_date]' value='<%= i.graduation_date %>'/>
+					</div>
+				</div>	
+
+				<div class='control-group'>
+					<label class='control-label'>Major: </label>
+					<div class='controls'>
+						<input class="required" type='text' name='education[0][major]' value='<%= i.major %>'/>
+					</div>
+				</div>
+
+				<div class='control-group'>
+					<label class='control-label'>GPA: </label>
+					<div class='controls'>
+						<input class="required gpa-validate" type='text' name='education[0][gpa]' value='<%= i.gpa %>'/>
+					</div>
+				</div>
+			<%end%>
+			<div id='addSchool'></div>
+			<div class='btn' id='addSchoolbtn'>
+				Add another school
+			</div>
+		</div>	
+
+
+		<div class='well well-small resume-form'>
+			<p>Job Experience</p>
+			<% @resume.jobs.each do |i| %>
+				<div class='control-group'>
+					<label class='control-label'>Company's Name: </label>
+					<div class='controls'>
+						<input class="required" type='text' name='job[0][company_name]' value=' <%= i.company_name %>'/>
+					</div>
+				</div>
+
+				<div class='control-group'>
+					<label class='control-label'>Position: </label>
+					<div class='controls'>
+						<input class="required" type='text' name='job[0][position]' value=' <%= i.position %>'/>
+					</div>
+				</div>		
+
+				<div class='control-group'>
+					<!-- make into drop box -->
+					<label class='control-label'>Start date (month/year): </label>
+					<div class='controls'>
+						<input class="required" type='text' name='job[0][job_start]' value=' <%= i.job_start %>'/>
+					</div>
+				</div>
+
+				<div class='control-group'>
+					<!-- make into drop box -->
+					<label class='control-label'>End date (month/year): </label>
+					<div class='controls'>
+						<input class="required" type='text' name='job[0][job_end]' value=' <%= i.job_end %>'/>
+					</div>
+				</div>	
+
+				<div class='control-group'>
+					<label class='control-label'>Job experience: </label>
+					<div class='controls'>
+						<!--<input type='textarea' name='resume[job_skills]'>-->
+						<textarea class='span5 job-validate' name='job[0][job_skills]' placeholder='Max 200 characters. You can drag the bottom left corner to make text box larger.' value='<%= i.job_skills %>'><%= i.job_skills %></textarea>
+					</div>
+				</div>
+			<%end%>
+			<div id='addJob'></div>
+			<div class='btn' id='addJobbtn'>Add another job</div>
+		</div>
+
+
+		<div class='well well-small resume-form'>
+			<p>Other skills/experience</p>
+			<div class='control-group'>
+				<label class='control-label'>skills/experience: </label>
+				<div class='controls'>
+					<textarea class='span5' name='otherskill[0][skills]' placeholder='Max 200 characters. You can drag the bottom left corner to make text box larger.'></textarea>
+				</div>
+			</div>
+			
+			<% @resume.otherskills.each do |i| %>
+				<div class='control-group'>
+					<label class='control-label'>skills/experience: </label>
+					<div class='controls'>
+						<textarea class='span5' name='otherskill[0][skills]' placeholder='Max 200 characters. You can drag the bottom left corner to make text box larger.'></textarea>
+					</div>
+				</div>
+			<%end%>
+			<div id='addOtherExp'></div>
+			<div id='addOtherExpbtn' class='btn'>Add another skill/experience</div>
+		</div>
+
+		<div id='submit-button-form'>
+			<input class='btn span4' id='submit-button-resume-form' type='submit' value='Update'>	
+		</div>						
+	</form>
+</div>

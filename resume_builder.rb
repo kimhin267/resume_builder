@@ -360,13 +360,20 @@ post '/create_resume' do
 	#unless @resume.errors.nil? and @school.errors.nil? and @job.errors.nil? and @otherskill.errors.nil? 
 end
 
-get '/edit_resume' do
+get '/edit_resume/:id' do 
 	@user = User.first(:email_address => session['user'])
 	@resume = @user.resumes.first(params[:id])
-	return erb :resume_form
+	session[:errors] = []
+	session[:errors].clear
+	return erb :edit_resume
 end
 
-post '/update_resume' do
+post '/update_resume/:id' do
+	@user = User.first(:email_address => session['user'])
+	@resume = @user.resumes.first(params[:id])
+	@resume.save
+	
+	redirect ('/my_resumes')
 end
 
 get '/about' do

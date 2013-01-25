@@ -29,16 +29,20 @@
 			<%end%>
 			<% @resumes.each do |resume| %>
 				<li >
-					<h4 class='pull-left span2' id='center-resume-title'><%= resume.title %></h4>
-					<form class='pull-right' action='/view_resumes/<%= resume.id %>' method="post">
-						<input name="_method" type='hidden' value='delete'>
-						<input class='btn btn-danger' type='submit' value='Delete'>
-					</form>
-					<a class='btn pull-right' href="/resume_pdf/<%= resume.id %>.pdf">View in PDF</a>
-					<a class='btn btn-info span2 pull-right' href="/view_resumes/<%= resume.id %>">View Resume</a>
-					
+					<h4 class="pull-left" id='center-resume-title'><%= resume.title %></h4>
+					<div class="my-resume-option-btns">
+						<form class="pull-right my-resume-btn" action='/view_resumes/<%= resume.id %>' method="post">
+							<input name="_method" type='hidden' value='delete'>
+							<input class='btn btn-danger' type='submit' value='Delete'>
+						</form>
+						<a class='btn pull-right my-resume-btn' href="/resume_pdf/<%= resume.id %>.pdf">View in PDF</a>
+						<!-- <a  class='btn btn-primary pull-right'href="/edit_resume/<%= resume.id %>">Edit</a> -->
+						<a class='btn btn-info pull-right my-resume-btn' href="/view_resumes/<%= resume.id %>">View Resume</a>
+					</div>
+					<div class="clear"></div>	
 				</li>
 			<% end %>
+			<div class='clear'></div>
 		</div>
 	</ul>
 </div>
