@@ -10,3 +10,6 @@ how to deploy this application on a new server
 8. clone your repository using git
 9. start webserver
 10. go to a web browser and test to see that your site is working
+
+Install wkhtmltopdf for PDFkit
+- apt-get install wkhtmltopdf

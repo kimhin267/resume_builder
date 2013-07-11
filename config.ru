@@ -1,2 +1,2 @@
-require './resume_builder'
+require './application.rb'
 run Sinatra::Application
